@@ -1,4 +1,4 @@
-# bbstats
+# MLB-StatsAPI-Swagger
 
 OpenAPI Swagger for MLB Stats API
 
