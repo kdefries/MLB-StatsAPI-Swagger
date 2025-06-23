@@ -80,89 +80,6 @@ tags:
   - name: Milestones
     description: Operations pertaining to milestones
 paths:
-  /api/v1/teams/{teamId}/alumni:
-    get:
-      tags:
-        - Teams
-      summary: View all team alumni
-      operationId: alumni
-      parameters:
-        - name: teamId
-          in: path
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: true
-          schema:
-            type: string
-        - name: group
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            $ref: '#/components/schemas/StatGroup'
-        - name: fields
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/PeopleRestObject'
-    post:
-      tags:
-        - Teams
-      operationId: updateAlumni
-      parameters:
-        - name: teamId
-          in: path
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: true
-          schema:
-            type: string
-        - name: group
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            $ref: '#/components/schemas/StatGroup'
-        - name: fields
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-      security:
-        - basicAuth: []
-        - bearerAuth: []
   /api/v1/jobTypes:
     get:
       tags:
@@ -1068,6 +985,8 @@ paths:
     $ref: './teams/teams.yml#/paths/~1api~1v1~1teams'
   /api/v1/teams/{teamId}:
     $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}'
+  /api/v1/teams/{teamId}/alumni:
+    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1alumni'
 
   /api/v1/streaks:
     get:
@@ -5178,6 +5097,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PerformerType'
+
   # People
   /api/v1/people:
     $ref: './people/people.yml#/paths/~1api~1v1~1people'

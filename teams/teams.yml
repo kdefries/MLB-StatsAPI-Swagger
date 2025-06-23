@@ -1111,4 +1111,86 @@ paths:
             '*/*':
               schema:
                 $ref: '../_schemas/schemas.yml#/components/schemas/TeamsRestObject'
-
+  /api/v1/teams/{teamId}/alumni:
+    get:
+      tags:
+        - Teams
+      summary: View all team alumni
+      operationId: alumni
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: true
+          schema:
+            type: string
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
+    post:
+      tags:
+        - Teams
+      operationId: updateAlumni
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: true
+          schema:
+            type: string
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+        - basicAuth: []
+        - bearerAuth: []
