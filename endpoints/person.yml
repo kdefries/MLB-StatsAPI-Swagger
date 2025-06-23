@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
   title: Stats API People Section
-  description: Set of endpoints and schemas that are used for the People Section
+  description: Operations pertaining to players
   version: 1.0.0
 
-paths:
+paths:  
   /api/v1/people/{personId}/stats:
     get:
       tags:

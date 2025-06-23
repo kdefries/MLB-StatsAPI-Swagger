@@ -80,6 +80,90 @@ tags:
   - name: Milestones
     description: Operations pertaining to milestones
 paths:
+  # Analytics
+  /api/v1/teams/{teamId}/alumni:
+    get:
+      tags:
+        - Teams
+      summary: View all team alumni
+      operationId: alumni
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: true
+          schema:
+            type: string
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '#/components/schemas/StatGroup'
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PeopleRestObject'
+    post:
+      tags:
+        - Teams
+      operationId: updateAlumni
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: true
+          schema:
+            type: string
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '#/components/schemas/StatGroup'
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+        - basicAuth: []
+        - bearerAuth: []
   /api/v1/jobTypes:
     get:
       tags:
@@ -116,6 +200,36 @@ paths:
             '*/*':
               schema:
                 type: string
+  /api/v1/gameStatus:
+    get:
+      tags:
+        - Misc
+      summary: List all status types
+      operationId: gameStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RestObject'
+    post:
+      tags:
+        - Misc
+      summary: Clear all status types
+      operationId: updateGameStatuses
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+        - basicAuth: []
+        - bearerAuth: []
   /api/v1/windDirection:
     get:
       tags:
@@ -842,137 +956,1112 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TrackingSoftwareVersionRestObject'
-
-# Games
-  /api/v1/gameStatus:
-    $ref: './games/games.yml#/paths/~1api~1v1~1gameStatus'
-  /api/v1/game/{gamePk}/{guid}/contextMetricsAverages:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1contextMetricsAverages'
-  /api/v1/gamedayTypes:
-    $ref: './games/games.yml#/paths/~1api~1v1~1gamedayTypes'
-  /api/v1/gameTypes:
-    $ref: './games/games.yml#/paths/~1api~1v1~1gameTypes'
-  /api/v1/gamePace:
-    $ref: './games/games.yml#/paths/~1api~1v1~1gamePace'
-  /api/v1/game/{game_pk}/playByPlay:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{game_pk}~1playByPlay'
-  /api/v1/game/{game_pk}/linescore:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{game_pk}~1linescore'
-  /api/v1/game/{game_pk}/feed/color:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{game_pk}~1feed~1color'
-  /api/v1/game/{game_pk}/feed/color/timestamps:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{game_pk}~1feed~1color~1timestamps'
-  /api/v1/game/{game_pk}/content:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{game_pk}~1content'
-  /api/v1/game/{game_pk}/boxscore:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{game_pk}~1boxscore'
-  /api/v1/game/{gamePk}/{playId}/analytics/skeletalData/files:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{playId}~1analytics~1skeletalData~1files'
-  /api/v1/game/{gamePk}/{playId}/analytics/skeletalData/chunked:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{playId}~1analytics~1skeletalData~1chunked'
-  /api/v1/game/{gamePk}/{playId}/analytics/biomechanics/{positionId}:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{playId}~1analytics~1biomechanics~1{positionId}'
-  /api/v1/game/{gamePk}/{guid}/homeRunBallparks:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1homeRunBallparks'
-  /api/v1/game/{gamePk}/{guid}/contextMetrics:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1contextMetrics'
-  /api/v1/game/{gamePk}/{guid}/analytics:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1analytics'
-  /api/v1/game/{gamePk}/withMetrics:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1withMetrics'
-  /api/v1/game/{gamePk}/winProbability:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1winProbability'
-  /api/v1/game/{gamePk}/guids:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1guids'
-  /api/v1/game/{gamePk}/contextMetrics:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1{gamePk}~1contextMetrics'
-  /api/v1/game/lastPitch:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1lastPitch'
-  /api/v1/game/changes:
-    $ref: './games/games.yml#/paths/~1api~1v1~1game~1changes'
-  /api/v1/freeGameTypes:
-    $ref: './games/games.yml#/paths/~1api~1v1~1freeGameTypes'
-
-  # People
-  /api/v1/people:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people'
-  /api/v1/people/{personId}:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1{personId}'
-  /api/v1/people/{personId}/stats:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1{personId}~1stats'
-  /api/v1/people/{personId}/stats/metrics:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1metrics'
-  /api/v1/people/{personId}/stats/game/{gamePk}:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1game~1{gamePk}'
-  /api/v1/people/{personId}/awards:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1{personId}~1awards'
-  /api/v1/people/search:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1search'
-  /api/v1/people/freeAgents:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1freeAgents'
-  /api/v1/people/changes:
-    $ref: './people/people.yml#/paths/~1api~1v1~1people~1changes'
-
-  # Stats
-  /api/v1/baseballStats:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1baseballStats'
-  /api/v1/stats:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats'
-  /api/v1/stats/search:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1search'
-  /api/v1/stats/search/stats:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1search~1stats'
-  /api/v1/stats/search/params:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1search~1params'
-  /api/v1/stats/search/groupByTypes:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1search~1groupByTypes'
-  /api/v1/stats/search/config:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1search~1config'
-  /api/v1/stats/metrics:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1metrics'
-  /api/v1/stats/leaders:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1leaders'
-  /api/v1/stats/grouped:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1grouped'
-  /api/v1/stats/analytics/stolenBaseProbability:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1analytics~1stolenBaseProbability'
-  /api/v1/stats/analytics/sprayChart:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1analytics~1sprayChart'
-  /api/v1/stats/analytics/outsAboveAverage:
-    $ref: './stats/stats.yml#/paths/~1api~1v1~1stats~1analytics~1outsAboveAverage'
-
-  # Teams
   /api/v1/teams/{teamId}/stats:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1stats'
+    get:
+      tags:
+        - Teams
+      summary: View a teams stats
+      operationId: stats
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: stats
+          in: query
+          description: 'Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes'
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: true
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: sortStat
+          in: query
+          description: Baseball stat to sort splits by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/BaseballStatsEnum'
+        - name: order
+          in: query
+          description: The order of sorting, ascending or descending
+          required: false
+          schema:
+            $ref: '#/components/schemas/SortOrderEnum'
+        - name: groupBy
+          in: query
+          description: Group stats by PLAYER, TEAM, SEASON, VENUE, SPORT or STAT_GROUP
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GroupByEnum'
+        - name: opposingTeamId
+          in: query
+          description: A unique identifier for the opposing team. Must be used with Team ID
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: opposingPlayerId
+          in: query
+          description: A unique identifier for the opposing team
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sitCodes
+          in: query
+          description: Situation code for a given stat split.
+          required: false
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
   /api/v1/teams/{teamId}/roster:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1roster'
+    get:
+      tags:
+        - Teams
+      summary: View a teams roster
+      description: This endpoint allows you to pull teams
+      operationId: roster
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: rosterType
+          in: path
+          description: Type of roster. Available types in /api/v1/rosterTypes
+          required: true
+          schema:
+            type: string
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RosterRestObject'
   /api/v1/teams/{teamId}/roster/{rosterType}:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1roster~1{rosterType}'
+    get:
+      tags:
+        - Teams
+      summary: View a teams roster
+      description: This endpoint allows you to pull teams
+      operationId: roster_1
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: rosterType
+          in: path
+          description: Type of roster. Available types in /api/v1/rosterTypes
+          required: true
+          schema:
+            type: string
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RosterRestObject'
   /api/v1/teams/{teamId}/personnel:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1personnel'
+    get:
+      tags:
+        - Teams
+      summary: View all coaches for a team
+      operationId: personnel
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RosterRestObject'
   /api/v1/teams/{teamId}/leaders:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1leaders'
+    get:
+      tags:
+        - Teams
+      summary: View team stat leaders
+      operationId: leaders
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leaderCategories
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/PersonLeadersEnum'
+        - name: season
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: leaderGameTypes
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GameTypeEnum'
+        - name: expand
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/ExpandEnum'
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: playerPool
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerPoolEnum'
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamLeaderContainerRestObject'
   /api/v1/teams/{teamId}/history:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1history'
+    get:
+      tags:
+        - Teams
+      summary: View historical records for a list of teams
+      operationId: allTeams
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: Comma delimited list of Unique Team identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: startSeason
+          in: query
+          description: 'Start date for range of data (used with end date optionally). Example: ''2018'' or ''2018.2'''
+          required: false
+          schema:
+            type: string
+        - name: endSeason
+          in: query
+          description: 'End date for range of data (used with start date optionally). Format: ''2018'' or ''2018.2'''
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamsRestObject'
   /api/v1/teams/history:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1history'
+    get:
+      tags:
+        - Teams
+      summary: View historical records for a list of teams
+      operationId: allTeams_1
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: Comma delimited list of Unique Team identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: startSeason
+          in: query
+          description: 'Start date for range of data (used with end date optionally). Example: ''2018'' or ''2018.2'''
+          required: false
+          schema:
+            type: string
+        - name: endSeason
+          in: query
+          description: 'End date for range of data (used with start date optionally). Format: ''2018'' or ''2018.2'''
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamsRestObject'
   /api/v1/teams/{teamId}/coaches:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1coaches'
+    get:
+      tags:
+        - Teams
+      summary: View all coaches for a team
+      operationId: coaches
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: date
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RosterRestObject'
   /api/v1/teams/{teamId}/affiliates:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1affiliates'
+    get:
+      tags:
+        - Teams
+      summary: View team and affiliate teams
+      operationId: affiliates
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamsRestObject'
   /api/v1/teams/affiliates:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1affiliates'
+    get:
+      tags:
+        - Teams
+      summary: View team and affiliate teams
+      operationId: affiliates_1
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamsRestObject'
   /api/v1/teams/stats:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1stats'
+    get:
+      tags:
+        - Teams
+      summary: View a teams stats
+      operationId: stats_1
+      parameters:
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: stats
+          in: query
+          description: 'Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes'
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: true
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: sortStat
+          in: query
+          description: Baseball stat to sort splits by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/BaseballStatsEnum'
+        - name: order
+          in: query
+          description: The order of sorting, ascending or descending
+          required: false
+          schema:
+            $ref: '#/components/schemas/SortOrderEnum'
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: daysBack
+          in: query
+          description: Returns results from the last 'X' days (Starting from yesterday).
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sitCodes
+          in: query
+          description: Situation code for a given stat split.
+          required: false
+          schema:
+            type: string
+        - name: combineSits
+          in: query
+          description: 'If true, gathers stats where all of the situational criteria are met. If false, returns stats where any of the situational criteria are met. Default: false'
+          required: false
+          schema:
+            type: boolean
+        - name: opposingTeamId
+          in: query
+          description: A unique identifier for the opposing team. Must be used with Team ID
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
   /api/v1/teams/stats/leaders:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1stats~1leaders'
+    get:
+      tags:
+        - Teams
+      summary: View leaders for team stats
+      operationId: leaders_1
+      parameters:
+        - name: leaderCategories
+          in: query
+          description: TBD
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/PersonLeadersEnum'
+        - name: gameTypes
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GameTypeEnum'
+        - name: stats
+          in: query
+          description: 'Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes'
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: statType
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/StatType'
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: statGroup
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: daysBack
+          in: query
+          description: Returns results from the last 'X' days (Starting from yesterday).
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sitCodes
+          in: query
+          description: Situation code for a given stat split.
+          required: false
+          schema:
+            type: string
+        - name: opposingTeamId
+          in: query
+          description: A unique identifier for the opposing team. Must be used with Team ID
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LeagueLeaderContainerRestObject'
   /api/v1/teams:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams'
+    get:
+      tags:
+        - Teams
+      summary: View info for all teams
+      description: This endpoint allows you to pull teams
+      operationId: teams
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: divisionId
+          in: query
+          description: Unique Division Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: activeStatus
+          in: query
+          description: Flag for fetching teams that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '#/components/schemas/TeamActiveStatusEnum'
+        - name: leagueListId
+          in: query
+          description: Unique League List Identifier
+          required: false
+          schema:
+            $ref: '#/components/schemas/LeagueListsEnum'
+        - name: allStarStatuses
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/AllStarEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamsRestObject'
   /api/v1/teams/{teamId}:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}'
-  /api/v1/teams/{teamId}/alumni:
-    $ref: './teams/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1alumni'
-
+    get:
+      tags:
+        - Teams
+      summary: View info for all teams
+      description: This endpoint allows you to pull teams
+      operationId: teams_1
+      parameters:
+        - name: teamId
+          in: path
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: divisionId
+          in: query
+          description: Unique Division Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: activeStatus
+          in: query
+          description: Flag for fetching teams that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '#/components/schemas/TeamActiveStatusEnum'
+        - name: leagueListId
+          in: query
+          description: Unique League List Identifier
+          required: false
+          schema:
+            $ref: '#/components/schemas/LeagueListsEnum'
+        - name: allStarStatuses
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/AllStarEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TeamsRestObject'
   /api/v1/streaks:
     get:
       tags:
@@ -1134,6 +2223,2045 @@ paths:
                   type: array
                   items:
                     type: object
+  /api/v1/stats:
+    get:
+      tags:
+        - Stats
+      summary: View stats
+      operationId: stats_2
+      parameters:
+        - name: stats
+          in: query
+          description: 'Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes'
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: personId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamId
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: Comma delimited list of Unique Team identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: true
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueListId
+          in: query
+          description: Unique League List Identifier
+          required: false
+          schema:
+            $ref: '#/components/schemas/LeagueListsEnum'
+        - name: metrics
+          in: query
+          description: Name of metric(s) for metric log stats.  Available metrics in /api/v1/metrics
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/MetricType'
+        - name: gamePk
+          in: query
+          description: Unique Primary Key Representing a Game
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: batterTeamId
+          in: query
+          description: A unique identifier for the batter's team
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherTeamId
+          in: query
+          description: A unique identifier for the pitcher's team
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pitcherId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sitCodes
+          in: query
+          description: Situation code for a given stat split.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: combineSits
+          in: query
+          description: 'If true, gathers stats where all of the situational criteria are met. If false, returns stats where any of the situational criteria are met. Default: false'
+          required: false
+          schema:
+            type: boolean
+        - name: opposingTeamId
+          in: query
+          description: A unique identifier for the opposing team. Must be used with Team ID
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: sortStat
+          in: query
+          description: Baseball stat to sort splits by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/BaseballStatsEnum'
+        - name: order
+          in: query
+          description: The order of sorting, ascending or descending
+          required: false
+          schema:
+            $ref: '#/components/schemas/SortOrderEnum'
+        - name: playerPool
+          in: query
+          description: Return "ALL" or only "QUALIFIED" players based on plate appearances.
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerPoolEnum'
+        - name: position
+          in: query
+          description: 'Position number. Format: 1, 2, 3, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/BaseballPosition'
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: daysBack
+          in: query
+          description: Returns results from the last 'X' days (Starting from yesterday).
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: gamesBack
+          in: query
+          description: Returns results from the last 'X' games played.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: excludeTradedPlayers
+          in: query
+          description: Excludes players who have since been traded from the input team
+          required: false
+          schema:
+            type: boolean
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
+  /api/v1/stats/search:
+    get:
+      tags:
+        - Stats
+      summary: View stats from search
+      operationId: beastStats
+      parameters:
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: gamePks
+          in: query
+          description: Comma delimited list of unique primary keys
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: playIds
+          in: query
+          description: Comma delimited list of unique play identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: gameTypes
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GameTypeEnum'
+        - name: date
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: startDate
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: teamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherTeamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterTeamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherSportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterSportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherLeagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterLeagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: divisionIds
+          in: query
+          description: Comma delimited list of Unique League Identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherDivisionIds
+          in: query
+          description: Comma delimited list of Unique League Identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterDivisionIds
+          in: query
+          description: Comma delimited list of Unique League Identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitchersOnTeamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: battersOnTeamIds
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: playerIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: playerPool
+          in: query
+          description: Return "ALL" or only "QUALIFIED" players based on plate appearances.
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerPoolEnum'
+        - name: pitcherIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: catcherIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: firstBasemanIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: secondBasemanIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: thirdBasemanIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: shortstopIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leftFielderIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: centerFielderIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: rightFielderIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: runnerFirstIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: runnerSecondIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: runnerThirdIds
+          in: query
+          description: A unique identifier for a player
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: venueIds
+          in: query
+          description: Unique Venue Identifier
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitchHand
+          in: query
+          description: Handedness of pitcher
+          required: false
+          schema:
+            type: string
+        - name: batSide
+          in: query
+          description: Bat side of hitter
+          required: false
+          schema:
+            type: string
+        - name: pitchTypes
+          in: query
+          description: Classification of pitch (fastball, curveball, etc...)
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/PitchType'
+        - name: pitchCodes
+          in: query
+          description: Result of the pitch (ball, called strike, etc...)
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/PitchCode'
+        - name: eventTypes
+          in: query
+          description: Type of event
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/EventType'
+        - name: positions
+          in: query
+          description: All of the details of a player's position
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/BaseballPosition'
+        - name: primaryPositions
+          in: query
+          description: All of the details of a player's position
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/BaseballPosition'
+        - name: minPitchSpeed
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxPitchSpeed
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minSpinRate
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxSpinRate
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minExtension
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxExtension
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minExitVelocityAgainst
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxExitVelocityAgainst
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minLaunchAngleAgainst
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxLaunchAngleAgainst
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minExitVelocity
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxExitVelocity
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minLaunchAngle
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxLaunchAngle
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minHomeRunDistance
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxHomeRunDistance
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minHitDistance
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxHitDistance
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minHangTime
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxHangTime
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minHitProbability
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxHitProbability
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minCatchProbability
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxCatchProbability
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minAttackAngle
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxAttackAngle
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minBatSpeed
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxBatSpeed
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: minHomeRunXBallparks
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxHomeRunXBallparks
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: isBarrel
+          in: query
+          description: Whether or not a play resulted in a barreled ball
+          required: false
+          schema:
+            type: boolean
+        - name: hitTrajectories
+          in: query
+          description: Trajectory of hit (line drive, fly ball, etc...)
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/HitTrajectory'
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: groupBy
+          in: query
+          description: Group stats by PLAYER, TEAM, SEASON, VENUE, SPORT or STAT_GROUP
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GroupByEnum'
+        - name: compareOver
+          in: query
+          description: Group stats by PLAYER, TEAM, SEASON, VENUE, SPORT or STAT_GROUP
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GroupByEnum'
+        - name: sortStat
+          in: query
+          description: Baseball stat to sort splits by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/BaseballStatsEnum'
+        - name: sortModifier
+          in: query
+          description: The prefix modifier for the sort stat.  avg, min, max. I.E minExitVelocity, maxLaunchAngle, avgHitDistance
+          required: false
+          schema:
+            $ref: '#/components/schemas/AggregateSortTypeEnum'
+        - name: sortOrder
+          in: query
+          description: The order of sorting, ascending or descending
+          required: false
+          schema:
+            $ref: '#/components/schemas/SortOrderEnum'
+        - name: percentile
+          in: query
+          description: Only return averages above this percentile. used for best effort plays
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: minOccurrences
+          in: query
+          description: Minimum occurrences to filter upon
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: minPlateAppearances
+          in: query
+          description: Minimum occurrences to filter upon
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: minInnings
+          in: query
+          description: Minimum occurrences to filter upon
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: qualifierRate
+          in: query
+          description: Minimum occurrences to filter upon
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: sitCodes
+          in: query
+          description: Situation code for a given stat split.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: showTotals
+          in: query
+          description: Columns to return totals
+          required: false
+          schema:
+            type: boolean
+        - name: includeNullMetrics
+          in: query
+          description: Show events with null metrics
+          required: false
+          schema:
+            type: boolean
+        - name: statFields
+          in: query
+          description: Baseball stat fields to populate
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatField'
+        - name: atBatNumbers
+          in: query
+          description: 'The at bat number of a given game. Format: 1, 2, 3, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitchNumbers
+          in: query
+          description: 'The pitch number of a given game. Format: 1, 2, 3, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: debug
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: activeStatus
+          in: query
+          description: Whether or not a player is active
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatContainerRestObject'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/stats/search/stats:
+    get:
+      tags:
+        - Misc
+      summary: List stat search stats
+      operationId: statSearchStats
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '#/components/schemas/FilterLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatSearchStatRestObject'
+  /api/v1/stats/search/params:
+    get:
+      tags:
+        - Misc
+      summary: List stat search parameters
+      operationId: statSearchParams
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '#/components/schemas/FilterLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StatSearchParamRestObject'
+  /api/v1/stats/search/groupByTypes:
+    get:
+      tags:
+        - Misc
+      summary: List groupBy types
+      operationId: statSearchGroupByTypes
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '#/components/schemas/FilterLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupByEnum'
+  /api/v1/stats/search/config:
+    get:
+      tags:
+        - Misc
+      summary: Stats Search Config Endpoint
+      operationId: statSearchConfig
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '#/components/schemas/FilterLevelEnum'
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '#/components/schemas/StatGroup'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatSearchConfigRestObject'
+  /api/v1/stats/metrics:
+    get:
+      tags:
+        - Stats
+      summary: View metric stats
+      operationId: metricStats
+      parameters:
+        - name: personId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: personIds
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pitcherId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamId
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: stats
+          in: query
+          description: 'Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes'
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: opposingTeamId
+          in: query
+          description: A unique identifier for the opposing team. Must be used with Team ID
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: opposingPlayerId
+          in: query
+          description: A unique identifier for the opposing team
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: position
+          in: query
+          description: All of the details of a player's position
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/BaseballPosition'
+        - name: eventType
+          in: query
+          description: Type of event
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/EventType'
+        - name: pitchType
+          in: query
+          description: Classification of pitch (fastball, curveball, etc...)
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: hitTrajectory
+          in: query
+          description: Trajectory of hit (line drive, fly ball, etc...)
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/HitTrajectory'
+        - name: batSide
+          in: query
+          description: Bat side of hitter
+          required: false
+          schema:
+            type: string
+        - name: pitchHand
+          in: query
+          description: Handedness of pitcher
+          required: false
+          schema:
+            type: string
+        - name: venueId
+          in: query
+          description: All of the details of a venue
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: metrics
+          in: query
+          description: Name of metric(s) for metric log stats.  Available metrics in /api/v1/metrics
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/MetricType'
+        - name: gamePk
+          in: query
+          description: Unique Primary Key Representing a Game
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: minValue
+          in: query
+          description: Minimum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: maxValue
+          in: query
+          description: Maximum value to filter on
+          required: false
+          schema:
+            type: number
+            format: double
+        - name: percentile
+          in: query
+          description: Only return averages above this percentile. used for best effort plays
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: minOccurrences
+          in: query
+          description: Minimum occurrences to filter upon
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: order
+          in: query
+          description: The order of sorting, ascending or descending
+          required: false
+          schema:
+            $ref: '#/components/schemas/SortOrderEnum'
+        - name: date
+          in: query
+          description: 'Date of Game. Format: YYYY-MM-DD'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: batterTeamId
+          in: query
+          description: A unique identifier for the batter's team
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherTeamId
+          in: query
+          description: A unique identifier for the pitcher's team
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: debug
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/stats/leaders:
+    get:
+      tags:
+        - Stats
+      summary: Get leaders for a statistic
+      operationId: leaders_2
+      parameters:
+        - name: leaderCategories
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/PersonLeadersEnum'
+        - name: leaderGameTypes
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/GameTypeEnum'
+        - name: statGroup
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: season
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: expand
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/ExpandEnum'
+        - name: sportId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: stats
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueListId
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/LeagueListsEnum'
+        - name: playerPool
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerPoolEnum'
+        - name: statType
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/StatType'
+        - name: playerActive
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerActiveStatusEnum'
+        - name: position
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/BaseballPosition'
+        - name: sitCodes
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: opposingTeamId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: daysBack
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: gamesBack
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: groupBy
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/GroupByEnum'
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LeagueLeaderContainerRestObject'
+  /api/v1/stats/grouped:
+    get:
+      tags:
+        - Stats
+      summary: View grouped stats
+      operationId: groupedStats
+      parameters:
+        - name: stats
+          in: query
+          description: 'Type of statistics. Format: Individual, Team, Career, etc. Available types in /api/v1/statTypes'
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatType'
+        - name: personId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamId
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: Comma delimited list of Unique Team identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: true
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/StatGroup'
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueListId
+          in: query
+          description: Unique League List Identifier
+          required: false
+          schema:
+            $ref: '#/components/schemas/LeagueListsEnum'
+        - name: metrics
+          in: query
+          description: Name of metric(s) for metric log stats.  Available metrics in /api/v1/metrics
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/MetricType'
+        - name: gamePk
+          in: query
+          description: Unique Primary Key Representing a Game
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: batterTeamId
+          in: query
+          description: A unique identifier for the batter's team
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: pitcherTeamId
+          in: query
+          description: A unique identifier for the pitcher's team
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: batterId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: pitcherId
+          in: query
+          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sitCodes
+          in: query
+          description: Situation code for a given stat split.
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: combineSits
+          in: query
+          description: 'If true, gathers stats where all of the situational criteria are met. If false, returns stats where any of the situational criteria are met. Default: false'
+          required: false
+          schema:
+            type: boolean
+        - name: opposingTeamId
+          in: query
+          description: A unique identifier for the opposing team. Must be used with Team ID
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: sortStat
+          in: query
+          description: Baseball stat to sort splits by.
+          required: false
+          schema:
+            $ref: '#/components/schemas/BaseballStatsEnum'
+        - name: order
+          in: query
+          description: The order of sorting, ascending or descending
+          required: false
+          schema:
+            $ref: '#/components/schemas/SortOrderEnum'
+        - name: playerPool
+          in: query
+          description: Return "ALL" or only "QUALIFIED" players based on plate appearances.
+          required: false
+          schema:
+            $ref: '#/components/schemas/PlayerPoolEnum'
+        - name: position
+          in: query
+          description: 'Position number. Format: 1, 2, 3, etc'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '#/components/schemas/BaseballPosition'
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: daysBack
+          in: query
+          description: Returns results from the last 'X' days (Starting from yesterday).
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: gamesBack
+          in: query
+          description: Returns results from the last 'X' games played.
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: excludeTradedPlayers
+          in: query
+          description: Excludes players who have since been traded from the input team
+          required: false
+          schema:
+            type: boolean
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: statFields
+          in: query
+          description: Baseball stat fields to populate
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/StatField'
+        - name: sortField
+          in: query
+          description: Baseball statField to sort on.  If no statField is given, sortField defaults to BASIC.  If 1 statField is given, that is the default sortField.
+          required: false
+          schema:
+            $ref: '#/components/schemas/StatField'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
+  /api/v1/stats/analytics/stolenBaseProbability:
+    get:
+      tags:
+        - Stats
+      summary: Get the probability of a hit for the given hit data
+      operationId: getStolenBaseProbability
+      parameters:
+        - name: gamePk
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/stats/analytics/sprayChart:
+    get:
+      tags:
+        - Stats
+      summary: Get the spray chart info for the current batter
+      operationId: getSprayChart
+      parameters:
+        - name: gamePk
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/stats/analytics/outsAboveAverage:
+    get:
+      tags:
+        - Stats
+      summary: Get outs above average for the current batter
+      operationId: getOutsAboveAverage
+      parameters:
+        - name: gamePk
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StatsRestObject'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
   /api/v1/statcastPositionTypes:
     get:
       tags:
@@ -3043,6 +6171,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PerformerType'
+
+  # Person Endpoints
+  /api/v1/people:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people'
+  /api/v1/people/{personId}:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}'
+  /api/v1/people/{personId}/stats:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats'
+  /api/v1/people/{personId}/stats/metrics:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1metrics'
+  /api/v1/people/{personId}/stats/game/{gamePk}:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1game~1{gamePk}'
+  /api/v1/people/{personId}/awards:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1awards'
+  /api/v1/people/search:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1search'
+  /api/v1/people/freeAgents:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1freeAgents'
+  /api/v1/people/changes:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1changes'
+
   /api/v1/moundVisitTypes:
     get:
       tags:
@@ -4580,6 +7729,835 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GroupByEnum'
+  /api/v1/gamedayTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all gameday types
+      operationId: gamedayTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeneralLookupRestObject'
+  /api/v1/gameTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all game types
+      operationId: gameTypes
+      parameters:
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameTypeEnum'
+  /api/v1/gamePace:
+    get:
+      tags:
+        - Game Pace
+      summary: View time of game info
+      operationId: gamePace
+      parameters:
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: teamId
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: teamIds
+          in: query
+          description: Comma delimited list of Unique Team identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueListId
+          in: query
+          description: Unique League List Identifier
+          required: false
+          schema:
+            $ref: '#/components/schemas/LeagueListsEnum'
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: startDate
+          in: query
+          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: venueIds
+          in: query
+          description: Comma delimited list of Unique venue identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: excludeVenueIds
+          in: query
+          description: Comma delimited list of Unique venue identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: excludeGamePks
+          in: query
+          description: Comma delimited list of unique primary keys
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: orgType
+          in: query
+          description: 'Organization level. Format: T(Team), L(League), S(Sport)'
+          required: false
+          schema:
+            $ref: '#/components/schemas/OrganizationType'
+        - name: includeChildren
+          in: query
+          description: Determines weather to include results from an organization's children (ex. a sport would also include results for the teams and leagues)
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GamePaceWrapperRestObject'
+  /api/v1/game/{game_pk}/playByPlay:
+    get:
+      tags:
+        - Game
+      summary: Get game play By Play
+      description: This endpoint allows you to pull the play by play of a game
+      operationId: playByPlay
+      parameters:
+        - name: game_pk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: inclusiveTimecode
+          in: query
+          description: True to include plays that happen before or at the specified timecode
+          required: false
+          schema:
+            type: boolean
+        - name: accent
+          in: query
+          description: Boolean value to specify wanting a person's name with accents or without
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/BaseballPlayByPlayRestObject'
+  /api/v1/game/{game_pk}/linescore:
+    get:
+      tags:
+        - Game
+      summary: Get game linescore
+      description: This endpoint allows you to pull the linescore for a game
+      operationId: linescore
+      parameters:
+        - name: game_pk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: inclusiveTimecode
+          in: query
+          description: True to include plays that happen before or at the specified timecode
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/BaseballLinescoreRestObject'
+  /api/v1/game/{game_pk}/feed/color:
+    get:
+      tags:
+        - Game
+      summary: Get game color feed.
+      description: 'This API can return very large payloads.  It is STRONGLY recommended that clients ask for diffs and use "Accept-Encoding: gzip" header.'
+      operationId: colorFeed
+      parameters:
+        - name: game_pk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: string
+  /api/v1/game/{game_pk}/feed/color/timestamps:
+    get:
+      tags:
+        - Game
+      summary: Retrieve all of the color timestamps for a game.
+      description: This can be used for replaying games.  Endpoint returns all of the timecodes that can be used with diffs for /v1/game/{game_pk}/feed/color
+      operationId: colorTimestamps
+      parameters:
+        - name: game_pk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/v1/game/{game_pk}/content:
+    get:
+      tags:
+        - Game
+      summary: Retrieve all content for a game.
+      operationId: content
+      parameters:
+        - name: game_pk
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: highlightLimit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/GameContentRestObject'
+  /api/v1/game/{game_pk}/boxscore:
+    get:
+      tags:
+        - Game
+      summary: Get game boxscore.
+      description: This endpoint allows you to pull a boxscore
+      operationId: boxscore
+      parameters:
+        - name: game_pk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: inclusiveTimecode
+          in: query
+          description: True to include plays that happen before or at the specified timecode
+          required: false
+          schema:
+            type: boolean
+        - name: numPlayers
+          in: query
+          description: Number of top player game scores to show. Default is 3.
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 3
+        - name: noTies
+          in: query
+          description: If set to false, will show all players tied for the last spot in the game scores list.
+          required: false
+          schema:
+            type: boolean
+        - name: accent
+          in: query
+          description: Boolean value to specify wanting a person's name with accents or without
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/BaseballBoxscoreRestObject'
+  /api/v1/game/{gamePk}/{playId}/analytics/skeletalData/files:
+    get:
+      tags:
+        - Skeletal
+      summary: View Skeletal Data by playId and gameId files
+      description: This endpoint allows you to pull chunked skeletal tracking data by gameId and playId
+      operationId: skeletalDataFileNames
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: playId
+          in: path
+          description: Unique play identifier
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkeletalFileData'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/game/{gamePk}/{playId}/analytics/skeletalData/chunked:
+    get:
+      tags:
+        - Skeletal
+      summary: View Skeletal Data by playId and gameId chunked
+      description: This endpoint allows you to pull chunked skeletal tracking data by gameId and playId
+      operationId: skeletalChunked
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: playId
+          in: path
+          description: Unique play identifier
+          required: true
+          schema:
+            type: string
+        - name: fileName
+          in: query
+          description: Skeletal chunked file name
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/game/{gamePk}/{playId}/analytics/biomechanics/{positionId}:
+    get:
+      tags:
+        - Biomechanics
+      summary: View Biomechanical data by playId and gameId filtered by player positionId
+      description: This endpoint allows you to pull biomechanical tracking data by gameId and playId filtered by player positionId
+      operationId: biomechanical
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: playId
+          in: path
+          description: Unique play identifier
+          required: true
+          schema:
+            type: string
+        - name: positionId
+          in: path
+          description: 'Position number. Format: 1, 2, 3, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkeletalDataWrapperRestObject'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+
+
+  /api/v1/game/{gamePk}/withMetrics:
+    get:
+      tags:
+        - Game
+      summary: Get game info with metrics
+      operationId: getGameWithMetrics
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: inclusiveTimecode
+          in: query
+          description: True to include plays that happen before or at the specified timecode
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: accent
+          in: query
+          description: Boolean value to specify wanting a person's name with accents or without
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseballGameRestObject'
+  /api/v1/game/{gamePk}/winProbability:
+    get:
+      tags:
+        - Game
+      summary: Get the win probability for this game
+      operationId: getWinProbability
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: inclusiveTimecode
+          in: query
+          description: True to include plays that happen before or at the specified timecode
+          required: false
+          schema:
+            type: boolean
+        - name: accent
+          in: query
+          description: Boolean value to specify wanting a person's name with accents or without
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BaseballPlayRestObject'
+
+  /api/v1/game/{gamePk}/contextMetrics:
+    get:
+      tags:
+        - Game
+      summary: Get the context metrics for this game based on its current state
+      operationId: getGameContextMetrics
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: timecode
+          in: query
+          description: 'Use this parameter to return a snapshot of the data at the specified time. Format: YYYYMMDD_HHMMSS'
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseballGameContextRestObject'
+
+  /api/v1/game/changes:
+    get:
+      tags:
+        - Game
+      summary: View a game change log
+      operationId: currentGameStats_1
+      parameters:
+        - name: updatedSince
+          in: query
+          description: 'Format: YYYY-MM-DDTHH:MM:SSZ'
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportIds
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '#/components/schemas/GameTypeEnum'
+        - name: gameTypes
+          in: query
+          description: Comma delimited list of type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/GameTypeEnum'
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: gamePks
+          in: query
+          description: Comma delimited list of unique primary keys
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: offset
+          in: query
+          description: The pointer to start for a return set; used for pagination
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScheduleRestObject'
+  /api/v1/freeGameTypes:
+    get:
+      tags:
+        - Misc
+      summary: View free game types
+      operationId: freeGameTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FreeGameTypeRestObject'
   /api/v1/fielderDetailTypes:
     get:
       tags:
@@ -5494,6 +9472,21 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
+  /api/v1/baseballStats:
+    get:
+      tags:
+        - Misc
+      summary: List all baseball stats
+      operationId: baseballStats
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BaseballStatsTypeRestObject'
   /api/v1/awards/{awardId}/recipients:
     get:
       tags:
@@ -5710,327 +9703,7 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AttendanceRestObject'
-  /api/v1/analytics/guids:
-    get:
-      tags:
-        - analytics
-      summary: 'Get the GUIDs (plays) for a specific game. '
-      operationId: gameGuidsFromPostgresRange
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: gameModeId
-          in: query
-          description: 'Statcast game mode. Format: 0 = Batting Practive, 1 = Warmup 2 = Live'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: isPitch
-          in: query
-          description: If there was a pitch
-          required: false
-          schema:
-            type: boolean
-        - name: isHit
-          in: query
-          description: If there was a hit ball tracked
-          required: false
-          schema:
-            type: boolean
-        - name: isPickoff
-          in: query
-          description: If there was a pickoff
-          required: false
-          schema:
-            type: boolean
-        - name: isNonStatcast
-          in: query
-          description: If non statcast games need to be included
-          required: false
-          schema:
-            type: boolean
-        - name: gamedayType
-          in: query
-          description: Indicates the level of Gameday (tracking, play-by-play, linescore, etc...)
-          required: false
-          schema:
-            type: string
-        - name: hasUpdates
-          in: query
-          description: True if updated by an auditor
-          required: false
-          schema:
-            type: boolean
-        - name: lastPlayTime
-          in: query
-          description: 'Returns all data that was created after the specified timestamp. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastUpdatedTime
-          in: query
-          description: 'Return data updated since a specified date. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastMetricsUpdatedTime
-          in: query
-          description: 'Return data updated since a specified date. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastAuditUpdatedTime
-          in: query
-          description: 'Return data updated since a specified date. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastVideoUpdatedTime
-          in: query
-          description: The last time SportyBot video was updated
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: gameDate
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: gameType
-          in: query
-          description: Type of Game. Available types in /api/v1/gameTypes
-          required: false
-          schema:
-            $ref: '#/components/schemas/GameTypeEnum'
-        - name: trackingSystemOwner
-          in: query
-          description: Owner of the tracking system
-          required: false
-          schema:
-            $ref: '#/components/schemas/TrackingSystemOwner'
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: sortBy
-          in: query
-          description: Sort the set of data by the specified field
-          required: false
-          schema:
-            type: string
-        - name: limit
-          in: query
-          description: Number of results to return
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: offset
-          in: query
-          description: The pointer to start for a return set; used for pagination
-          required: false
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: '#/components/schemas/AnalyticsPlayMetadataWrapperRestObject'
-      security:
-        - basicAuth: []
-        - bearerAuth: []
-  /api/v1/analytics/game:
-    get:
-      tags:
-        - analytics
-      summary: Get all games by updated date.
-      operationId: gameGuidsFromPostgresRangeByGame
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: gameModeId
-          in: query
-          description: 'Statcast game mode. Format: 0 = Batting Practive, 1 = Warmup 2 = Live'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: isPitch
-          in: query
-          description: If there was a pitch
-          required: false
-          schema:
-            type: boolean
-        - name: isHit
-          in: query
-          description: If there was a hit ball tracked
-          required: false
-          schema:
-            type: boolean
-        - name: isPickoff
-          in: query
-          description: If there was a pickoff
-          required: false
-          schema:
-            type: boolean
-        - name: isNonStatcast
-          in: query
-          description: If non statcast games need to be included
-          required: false
-          schema:
-            type: boolean
-        - name: gamedayType
-          in: query
-          description: Indicates the level of Gameday (tracking, play-by-play, linescore, etc...)
-          required: false
-          schema:
-            type: string
-        - name: hasUpdates
-          in: query
-          description: True if updated by an auditor
-          required: false
-          schema:
-            type: boolean
-        - name: lastPlayTime
-          in: query
-          description: 'Returns all data that was created after the specified timestamp. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastVideoUpdatedTime
-          in: query
-          description: The last time SportyBot video was updated
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastUpdatedTime
-          in: query
-          description: 'Return data updated since a specified date. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastMetricsUpdatedTime
-          in: query
-          description: 'Return data updated since a specified date. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: lastAuditUpdatedTime
-          in: query
-          description: 'Return data updated since a specified date. Format: YYYY-MM-DDTHH:MM:SSZ'
-          required: false
-          schema:
-            type: string
-            format: date-time
-        - name: gameDate
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: gameType
-          in: query
-          description: Type of Game. Available types in /api/v1/gameTypes
-          required: false
-          schema:
-            $ref: '#/components/schemas/GameTypeEnum'
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: trackingSystemOwner
-          in: query
-          description: Owner of the tracking system
-          required: false
-          schema:
-            $ref: '#/components/schemas/TrackingSystemOwner'
-        - name: sortBy
-          in: query
-          description: Sort the set of data by the specified field
-          required: false
-          schema:
-            type: string
-        - name: limit
-          in: query
-          description: Number of results to return
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: offset
-          in: query
-          description: The pointer to start for a return set; used for pagination
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: scheduleEventTypes
-          in: query
-          description: Comma delimited list of type of event types
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/ScheduleEventTypes'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                $ref: '#/components/schemas/AnalyticsGameMetadataWrapperRestObject'
-      security:
-        - basicAuth: []
-        - bearerAuth: []
+
   /api/v1/achievementStatuses:
     get:
       tags:
