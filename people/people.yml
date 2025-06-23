@@ -26,7 +26,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatType'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatType'
         - name: group
           in: query
           description: Category of statistic to return. Available types in /api/v1/statGroups
@@ -35,7 +35,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatGroup'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
         - name: season
           in: query
           description: Season of play
@@ -78,7 +78,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/MetricType'
+              $ref: '../_schemas/schemas.yml#/components/schemas/MetricType'
         - name: leagueId
           in: query
           description: Unique League Identifier
@@ -91,7 +91,7 @@ paths:
           description: Unique League List Identifier
           required: false
           schema:
-            $ref: '../schemas/schemas.yml#/components/schemas/LeagueListsEnum'
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueListsEnum'
         - name: sitCodes
           in: query
           description: Situation code for a given stat split.
@@ -149,7 +149,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/EventType'
+              $ref: '../_schemas/schemas.yml#/components/schemas/EventType'
         - name: pitchType
           in: query
           description: Classification of pitch (fastball, curveball, etc...)
@@ -167,7 +167,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/HitTrajectory'
+              $ref: '../_schemas/schemas.yml#/components/schemas/HitTrajectory'
         - name: batSide
           in: query
           description: Bat side of hitter
@@ -182,7 +182,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/GameTypeEnum'
+              $ref: '../_schemas/schemas.yml#/components/schemas/GameTypeEnum'
         - name: groupBy
           in: query
           description: Group stats by PLAYER, TEAM, SEASON, VENUE, SPORT or STAT_GROUP
@@ -191,7 +191,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/GroupByEnum'
+              $ref: '../_schemas/schemas.yml#/components/schemas/GroupByEnum'
         - name: accent
           in: query
           description: Boolean value to specify wanting a person's name with accents or without
@@ -213,7 +213,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/StatsRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/StatsRestObject'
   /api/v1/people/{personId}/stats/metrics:
     get:
       tags:
@@ -235,7 +235,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatType'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatType'
         - name: group
           in: query
           description: Category of statistic to return. Available types in /api/v1/statGroups
@@ -244,7 +244,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatGroup'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
         - name: season
           in: query
           description: Season of play
@@ -287,7 +287,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/MetricType'
+              $ref: '../_schemas/schemas.yml#/components/schemas/MetricType'
         - name: leagueId
           in: query
           description: Unique League Identifier
@@ -300,7 +300,7 @@ paths:
           description: Unique League List Identifier
           required: false
           schema:
-            $ref: '../schemas/schemas.yml#/components/schemas/LeagueListsEnum'
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueListsEnum'
         - name: sitCodes
           in: query
           description: Situation code for a given stat split.
@@ -358,7 +358,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/EventType'
+              $ref: '../_schemas/schemas.yml#/components/schemas/EventType'
         - name: pitchType
           in: query
           description: Classification of pitch (fastball, curveball, etc...)
@@ -376,7 +376,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/HitTrajectory'
+              $ref: '../_schemas/schemas.yml#/components/schemas/HitTrajectory'
         - name: batSide
           in: query
           description: Bat side of hitter
@@ -391,7 +391,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/GameTypeEnum'
+              $ref: '../_schemas/schemas.yml#/components/schemas/GameTypeEnum'
         - name: groupBy
           in: query
           description: Group stats by PLAYER, TEAM, SEASON, VENUE, SPORT or STAT_GROUP
@@ -400,7 +400,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/GroupByEnum'
+              $ref: '../_schemas/schemas.yml#/components/schemas/GroupByEnum'
         - name: accent
           in: query
           description: Boolean value to specify wanting a person's name with accents or without
@@ -422,7 +422,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/StatsRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/StatsRestObject'
       security:
         - basicAuth: []
         - bearerAuth: []
@@ -455,7 +455,7 @@ paths:
             uniqueItems: true
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatGroup'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
         - name: fields
           in: query
           description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
@@ -471,7 +471,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/StatsRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/StatsRestObject'
   /api/v1/people/{personId}/awards:
     get:
       tags:
@@ -501,7 +501,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/AwardsRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/AwardsRestObject'
   /api/v1/people/{personId}:
     get:
       tags:
@@ -545,7 +545,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatGroup'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
         - name: fields
           in: query
           description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
@@ -561,7 +561,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/PeopleRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
   /api/v1/people:
     get:
       tags:
@@ -605,7 +605,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '../schemas/schemas.yml#/components/schemas/StatGroup'
+              $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
         - name: fields
           in: query
           description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
@@ -621,7 +621,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/PeopleRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
   /api/v1/people/search:
     get:
       tags:
@@ -681,7 +681,7 @@ paths:
           description: Unique League List Identifier
           required: false
           schema:
-            $ref: '../schemas/schemas.yml#/components/schemas/LeagueListsEnum'
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueListsEnum'
         - name: active
           in: query
           description: Whether or not a player is active
@@ -736,7 +736,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/PeopleRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
   /api/v1/people/freeAgents:
     get:
       tags:
@@ -755,7 +755,7 @@ paths:
           description: The order of sorting, ascending or descending
           required: false
           schema:
-            $ref: '../schemas/schemas.yml#/components/schemas/SortOrderEnum'
+            $ref: '../_schemas/schemas.yml#/components/schemas/SortOrderEnum'
         - name: accent
           in: query
           description: Boolean value to specify wanting a person's name with accents or without
@@ -776,7 +776,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/FreeAgentListRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/FreeAgentListRestObject'
   /api/v1/people/changes:
     get:
       tags:
@@ -826,4 +826,4 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '../schemas/schemas.yml#/components/schemas/PeopleRestObject'
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
