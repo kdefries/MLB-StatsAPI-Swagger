@@ -1,0 +1,136 @@
+openapi: 3.0.1
+info:
+  title: Stats API Awards Section
+  description: Operations pertaining to awards
+  version: 1.0.0
+
+paths: 
+  /api/v1/awards/{awardId}/recipients:
+    get:
+      tags:
+        - Awards
+      summary: View recipients of an award
+      operationId: awardRecipients
+      parameters:
+        - name: awardId
+          in: path
+          description: Unique Award Identifier. Available awards in /api/v1/awards
+          required: true
+          schema:
+            type: string
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueId
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/AwardsRestObject'
+  /api/v1/awards:
+    get:
+      tags:
+        - Awards
+      summary: View awards info
+      operationId: awards
+      parameters:
+        - name: awardId
+          in: path
+          description: Unique Award Identifier. Available awards in /api/v1/awards
+          required: true
+          schema:
+            type: string
+        - name: orgId
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/AwardsRestObject'
+  /api/v1/awards/{awardId}:
+    get:
+      tags:
+        - Awards
+      summary: View awards info
+      operationId: awards_1
+      parameters:
+        - name: awardId
+          in: path
+          description: Unique Award Identifier. Available awards in /api/v1/awards
+          required: true
+          schema:
+            type: string
+        - name: orgId
+          in: query
+          description: Comma delimited list of top level organizations of a sport
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/AwardsRestObject'

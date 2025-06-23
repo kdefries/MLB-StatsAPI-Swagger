@@ -4,7 +4,7 @@ info:
   description: Operations pertaining to field tracking and analytics
   version: 1.0.0
 
-paths:    
+paths:
   /api/v1/game/{gamePk}/{guid}/contextMetricsAverages:
     get:
       tags:

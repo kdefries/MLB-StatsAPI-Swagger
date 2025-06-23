@@ -81,6 +81,35 @@ tags:
     description: Operations pertaining to milestones
 paths:
   # Analytics
+  /api/v1/game/{gamePk}/{guid}/contextMetricsAverages:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1contextMetricsAverages'
+  /api/v1/game/{gamePk}/{guid}/homeRunBallparks:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1homeRunBallparks'
+  /api/v1/game/{gamePk}/{guid}/contextMetrics:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1contextMetrics'
+  /api/v1/game/{gamePk}/{guid}/analytics:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1game~1{gamePk}~1{guid}~1analytics'
+  /api/v1/game/{gamePk}/guids:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1game~1{gamePk}~1guids'
+  /api/v1/game/lastPitch:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1game~1lastPitch'
+  /api/v1/analytics/guids:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1analytics~1guids'
+  /api/v1/analytics/game:
+    $ref: './endpoints/analytics.yml#/paths/~1api~1v1~1analytics~1game'
+
+  # Attendance
+  /api/v1/attendance:
+    $ref: './endpoints/attendance.yml#/paths/~1api~1v1~1attendance'
+
+  # Awards
+  /api/v1/awards/{awardId}/recipients:
+    $ref: './endpoints/awards.yml#/paths/~1api~1v1~1awards~1{awardId}~1recipients'
+  /api/v1/awards:
+    $ref: './endpoints/awards.yml#/paths/~1api~1v1~1awards'
+  /api/v1/awards/{awardId}:
+    $ref: './endpoints/awards.yml#/paths/~1api~1v1~1awards~1{awardId}'
+
   /api/v1/teams/{teamId}/alumni:
     get:
       tags:
@@ -9487,222 +9516,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/BaseballStatsTypeRestObject'
-  /api/v1/awards/{awardId}/recipients:
-    get:
-      tags:
-        - Awards
-      summary: View recipients of an award
-      operationId: awardRecipients
-      parameters:
-        - name: awardId
-          in: path
-          description: Unique Award Identifier. Available awards in /api/v1/awards
-          required: true
-          schema:
-            type: string
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: leagueId
-          in: query
-          description: Comma delimited list of Unique league identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: fields
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AwardsRestObject'
-  /api/v1/awards:
-    get:
-      tags:
-        - Awards
-      summary: View awards info
-      operationId: awards
-      parameters:
-        - name: awardId
-          in: path
-          description: Unique Award Identifier. Available awards in /api/v1/awards
-          required: true
-          schema:
-            type: string
-        - name: orgId
-          in: query
-          description: Comma delimited list of top level organizations of a sport
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AwardsRestObject'
-  /api/v1/awards/{awardId}:
-    get:
-      tags:
-        - Awards
-      summary: View awards info
-      operationId: awards_1
-      parameters:
-        - name: awardId
-          in: path
-          description: Unique Award Identifier. Available awards in /api/v1/awards
-          required: true
-          schema:
-            type: string
-        - name: orgId
-          in: query
-          description: Comma delimited list of top level organizations of a sport
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AwardsRestObject'
-  /api/v1/attendance:
-    get:
-      tags:
-        - Attendance
-      summary: Get team attendance
-      operationId: getTeamAttendance
-      parameters:
-        - name: teamId
-          in: query
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: leagueId
-          in: query
-          description: Comma delimited list of Unique league identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: season
-          in: query
-          description: Comma delimited list of Seasons of play
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-        - name: leagueListId
-          in: query
-          description: Unique League List Identifier
-          required: false
-          schema:
-            $ref: '#/components/schemas/LeagueListsEnum'
-        - name: gameType
-          in: query
-          description: Type of Game. Available types in /api/v1/gameTypes
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/GameTypeEnum'
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: startDate
-          in: query
-          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: endDate
-          in: query
-          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/AttendanceRestObject'
+
+
+
+
 
   /api/v1/achievementStatuses:
     get:
