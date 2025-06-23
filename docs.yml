@@ -118,6 +118,13 @@ paths:
   /api/v1/game/{gamePk}/{playId}/analytics/biomechanics/{positionId}:
     $ref: './endpoints/biomechanics.yml#/paths/~1api~1v1~1game~1{gamePk}~1{playId}~1analytics~1biomechanics~1{positionId}'
 
+  # Broadcast
+  /api/v1/broadcasters:
+    $ref: './endpoints/broadcast.yml#/paths/~1api~1v1~1broadcasters'
+  /api/v1/broadcast:
+    $ref: './endpoints/broadcast.yml#/paths/~1api~1v1~1broadcast'
+
+
   /api/v1/teams/{teamId}/alumni:
     get:
       tags:
@@ -9343,71 +9350,8 @@ paths:
                 type: array
                 items:
                   type: string
-  /api/v1/broadcasters:
-    get:
-      tags:
-        - Broadcast
-      summary: Get All Active Broadcasters
-      operationId: getAllBroadcasters
-      parameters:
-        - name: activeStatus
-          in: query
-          description: 'Current status of the broadcaster. Format: Active = y, inactive = n, both = b'
-          required: false
-          schema:
-            $ref: '#/components/schemas/BroadcasterActiveStatusEnum'
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BroadcasterRestObject'
-  /api/v1/broadcast:
-    get:
-      tags:
-        - Broadcast
-      summary: Get Broadcasters
-      operationId: getBroadcasts
-      parameters:
-        - name: broadcasterIds
-          in: query
-          description: All of the broadcast details
-          required: true
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BroadcasterRestObject'
+
+
   /api/v1/broadcastAvailability:
     get:
       tags:
