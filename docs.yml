@@ -206,6 +206,18 @@ paths:
   /api/v1/homeRunDerby/bracket:
     $ref: './endpoints/homerun_derby.yml#/paths/~1api~1v1~1homeRunDerby~1bracket'
 
+  # Job
+  /api/v1/jobs:
+    $ref: './endpoints/job.yml#/paths/~1api~1v1~1jobs'
+  /api/v1/jobs/umpires:
+    $ref: './endpoints/job.yml#/paths/~1api~1v1~1jobs~1umpires'
+  /api/v1/jobs/umpires/games/{umpireId}:
+    $ref: './endpoints/job.yml#/paths/~1api~1v1~1jobs~1umpires~1games~1{umpireId}'
+  /api/v1/jobs/officialScorers:
+    $ref: './endpoints/job.yml#/paths/~1api~1v1~1jobs~1officialScorers'
+  /api/v1/jobs/datacasters:
+    $ref: './endpoints/job.yml#/paths/~1api~1v1~1jobs~1datacasters'
+
   /api/v1/teams/{teamId}/alumni:
     get:
       tags:
@@ -7248,210 +7260,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Language'
-  /api/v1/jobs:
-    get:
-      tags:
-        - Job
-      summary: Get jobs by type
-      description: This endpoint allows you to pull teams
-      operationId: getJobsByType
-      parameters:
-        - name: jobType
-          in: query
-          description: Job Type Identifier (ie. UMPR, etc..)
-          required: true
-          schema:
-            type: string
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RosterRestObject'
-  /api/v1/jobs/umpires:
-    get:
-      tags:
-        - Job
-      summary: Get umpires
-      description: This endpoint allows you to pull teams
-      operationId: umpires
-      parameters:
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RosterRestObject'
-  /api/v1/jobs/umpires/games/{umpireId}:
-    get:
-      tags:
-        - Job
-      summary: Get umpires and associated game for umpireId
-      description: This endpoint allows you to pull teams
-      operationId: umpireSchedule
-      parameters:
-        - name: umpireId
-          in: path
-          description: A unique identifier for an umpire
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: true
-          schema:
-            type: string
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ScheduleRestObject'
-      security:
-        - basicAuth: []
-        - bearerAuth: []
-  /api/v1/jobs/officialScorers:
-    get:
-      tags:
-        - Job
-      summary: Get official scorers
-      description: This endpoint allows you to pull teams
-      operationId: officialScorers
-      parameters:
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RosterRestObject'
-  /api/v1/jobs/datacasters:
-    get:
-      tags:
-        - Job
-      summary: Get datacaster jobs
-      description: Get datacaster jobs
-      operationId: datacasters
-      parameters:
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RosterRestObject'
+
+
+
+
+
 
 
 
