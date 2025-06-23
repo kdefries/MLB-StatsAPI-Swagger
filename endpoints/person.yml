@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Stats API People Section
+  title: Stats API Person
   description: Operations pertaining to players
   version: 1.0.0
 

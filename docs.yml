@@ -368,6 +368,33 @@ paths:
   /api/v1/broadcastAvailability:
     $ref: './endpoints/misc.yml#/paths/~1api~1v1~1broadcastAvailability'
 
+  # Person
+  /api/v1/people:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people'
+  /api/v1/people/{personId}:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}'
+  /api/v1/people/{personId}/stats:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats'
+  /api/v1/people/{personId}/stats/metrics:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1metrics'
+  /api/v1/people/{personId}/stats/game/{gamePk}:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1game~1{gamePk}'
+  /api/v1/people/{personId}/awards:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1awards'
+  /api/v1/people/search:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1search'
+  /api/v1/people/freeAgents:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1freeAgents'
+  /api/v1/people/changes:
+    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1changes'
+
+  # Predictions
+  /api/v1/props/play/predictions:
+    $ref: './endpoints/predictions.yml#/paths/~1api~1v1~1props~1play~1predictions'
+
+  /api/v1/props/play/predictions/adjust:
+    $ref: './endpoints/predictions.yml#/paths/~1api~1v1~1props~1play~1predictions~1adjust'
+
 
   /api/v1/teams/{teamId}/alumni:
     get:
@@ -5688,120 +5715,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatContainerRestObject'
 
-  /api/v1/props/play/predictions:
-    get:
-      tags:
-        - Predictions
-      summary: Get play-level predictions based on input scenarios
-      description: This endpoint allows you to get play-level predictions based on input scenarios
-      operationId: getProps
-      parameters:
-        - name: batterId
-          in: query
-          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: pitcherId
-          in: query
-          description: 'Unique Player Identifier. Format: 434538, 429665, etc'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: venueId
-          in: query
-          description: Unique Venue Identifier
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: batSide
-          in: query
-          description: Bat side of hitter
-          required: false
-          schema:
-            type: string
-        - name: pitchHand
-          in: query
-          description: Handedness of pitcher
-          required: false
-          schema:
-            type: string
-        - name: batterPosition
-          in: query
-          description: 'Position abbreviation. Format: SS, P, 1B, etc'
-          required: false
-          schema:
-            type: string
-        - name: pitcherPosition
-          in: query
-          description: 'Position abbreviation. Format: SS, P, 1B, etc'
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-      security:
-        - basicAuth: []
-        - bearerAuth: []
-  /api/v1/props/play/predictions/adjust:
-    get:
-      tags:
-        - Predictions
-      summary: Get play-level predictions based on input scenarios
-      description: This endpoint allows you to get play-level predictions based on input scenarios
-      operationId: getPropsAdjust
-      parameters:
-        - name: gamePk
-          in: query
-          description: Unique Primary Key Representing a Game
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-      security:
-        - basicAuth: []
-        - bearerAuth: []
 
 
 
-
-
-
-
-  # Person Endpoints
-  /api/v1/people:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people'
-  /api/v1/people/{personId}:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}'
-  /api/v1/people/{personId}/stats:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats'
-  /api/v1/people/{personId}/stats/metrics:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1metrics'
-  /api/v1/people/{personId}/stats/game/{gamePk}:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1stats~1game~1{gamePk}'
-  /api/v1/people/{personId}/awards:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1{personId}~1awards'
-  /api/v1/people/search:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1search'
-  /api/v1/people/freeAgents:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1freeAgents'
-  /api/v1/people/changes:
-    $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1changes'
 
 
 
