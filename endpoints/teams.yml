@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
-  title: Stats API Teams Section
-  description: Set of endpoints and schemas that are used for the Teams Section
+  title: Stats API Teams
+  description: Operations pertaining to teams
   version: 1.0.0
 
 paths:  

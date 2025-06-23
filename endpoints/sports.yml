@@ -1,0 +1,196 @@
+openapi: 3.0.1
+info:
+  title: Stats API Sports
+  description: Operations pertaining to sports
+  version: 1.0.0
+
+paths:  
+  /api/v1/sports/{sportId}/players:
+    get:
+      tags:
+        - Sports
+      summary: Get all players for a sport level
+      description: This endpoint allows you to pull all players for a given sport
+      operationId: sportPlayers
+      parameters:
+        - name: sportId
+          in: path
+          description: Top level organization of a sport
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/GameTypeEnum'
+        - name: hasStats
+          in: query
+          description: Returns sports that have individual player stats
+          required: false
+          schema:
+            type: boolean
+        - name: accent
+          in: query
+          description: Boolean value to specify wanting a person's name with accents or without
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
+  /api/v1/sports/{sportId}/allSportBallot:
+    get:
+      tags:
+        - Sports
+      summary: Get ALL MLB ballot for sport
+      description: This endpoint allows you to get all players for MLB ballot
+      operationId: allSportBallot
+      parameters:
+        - name: sportId
+          in: path
+          description: Top level organization of a sport
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: season
+          required: true
+          schema:
+            type: string
+        - name: fields
+          in: query
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/PeopleRestObject'
+  /api/v1/sports:
+    get:
+      tags:
+        - Sports
+      summary: Get sports information
+      description: This endpoint allows you to pull sports
+      operationId: sports
+      parameters:
+        - name: sportId
+          in: path
+          description: Top level organization of a sport
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: hasStats
+          in: query
+          description: Returns sports that have individual player stats
+          required: false
+          schema:
+            type: boolean
+        - name: activeStatus
+          in: query
+          description: Flag for fetching sports that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/SportActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/SportsRestObject'
+  /api/v1/sports/{sportId}:
+    get:
+      tags:
+        - Sports
+      summary: Get sports information
+      description: This endpoint allows you to pull sports
+      operationId: sports_1
+      parameters:
+        - name: sportId
+          in: path
+          description: Top level organization of a sport
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: hasStats
+          in: query
+          description: Returns sports that have individual player stats
+          required: false
+          schema:
+            type: boolean
+        - name: activeStatus
+          in: query
+          description: Flag for fetching sports that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/SportActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/SportsRestObject'

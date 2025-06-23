@@ -1,0 +1,49 @@
+openapi: 3.0.1
+info:
+  title: Stats API Reviews
+  description: Operations pertaining to reviews
+  version: 1.0.0
+
+paths:  
+  /api/v1/review:
+    get:
+      tags:
+        - Reviews
+      summary: Get review info
+      operationId: getReviewInfo
+      parameters:
+        - name: sportId
+          in: query
+          description: 'Unique Team Identifier. Format: 141, 147, etc'
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: true
+          schema:
+            type: string
+        - name: gameType
+          in: query
+          description: Type of Game. Available types in /api/v1/gameTypes
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/GameTypeEnum'
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/StatContainerRestObject'

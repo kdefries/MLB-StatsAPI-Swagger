@@ -1,0 +1,595 @@
+openapi: 3.0.1
+info:
+  title: Stats API League
+  description: Operations pertaining to leagues
+  version: 1.0.0
+
+paths:  
+  /api/v1/league/{leagueId}/allStarWriteIns:
+    get:
+      tags:
+        - League
+      summary: View all star write ins info
+      operationId: allStarWriteIns
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/leagues/{leagueId}/allStarWriteIns:
+    get:
+      tags:
+        - League
+      summary: View all star write ins info
+      operationId: allStarWriteIns_1
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/league/{leagueId}/allStarFinalVote:
+    get:
+      tags:
+        - League
+      summary: View all star final vote info
+      operationId: allStarFinalVote
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/leagues/{leagueId}/allStarFinalVote:
+    get:
+      tags:
+        - League
+      summary: View all star final vote info
+      operationId: allStarFinalVote_1
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/league/allStarBallot:
+    get:
+      tags:
+        - League
+      summary: View al star ballot info
+      operationId: allStarBallot
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/league/{leagueId}/allStarBallot:
+    get:
+      tags:
+        - League
+      summary: View al star ballot info
+      operationId: allStarBallot_1
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/leagues/allStarBallot:
+    get:
+      tags:
+        - League
+      summary: View al star ballot info
+      operationId: allStarBallot_2
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/leagues/{leagueId}/allStarBallot:
+    get:
+      tags:
+        - League
+      summary: View al star ballot info
+      operationId: allStarBallot_3
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/league:
+    get:
+      tags:
+        - League
+      summary: View league info
+      operationId: league
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: activeStatus
+          in: query
+          description: Flag for fetching leagues that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/league/{leagueId}:
+    get:
+      tags:
+        - League
+      summary: View league info
+      operationId: league_1
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: activeStatus
+          in: query
+          description: Flag for fetching leagues that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/leagues:
+    get:
+      tags:
+        - League
+      summary: View league info
+      operationId: league_2
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: activeStatus
+          in: query
+          description: Flag for fetching leagues that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/leagues/{leagueId}:
+    get:
+      tags:
+        - League
+      summary: View league info
+      operationId: league_3
+      parameters:
+        - name: leagueId
+          in: path
+          description: Unique League Identifier
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: activeStatus
+          in: query
+          description: Flag for fetching leagues that are currently active (Y), inactive (N), pending (P), or all teams (B)
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/LeagueActiveStatusEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string

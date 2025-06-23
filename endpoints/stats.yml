@@ -1,25 +1,10 @@
 openapi: 3.0.1
 info:
-  title: Stats API Stats Section
-  description: Set of endpoints and schemas that are used for the Stats Section
+  title: Stats API Stats 
+  description: Operations pertaining to stats
   version: 1.0.0
 
-paths:
-  /api/v1/baseballStats:
-    get:
-      tags:
-        - Misc
-      summary: List all baseball stats
-      operationId: baseballStats
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '../_schemas/schemas.yml#/components/schemas/BaseballStatsTypeRestObject'
+paths:  
   /api/v1/stats:
     get:
       tags:
@@ -1099,98 +1084,6 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
-  /api/v1/stats/search/stats:
-    get:
-      tags:
-        - Misc
-      summary: List stat search stats
-      operationId: statSearchStats
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '../_schemas/schemas.yml#/components/schemas/StatSearchStatRestObject'
-  /api/v1/stats/search/params:
-    get:
-      tags:
-        - Misc
-      summary: List stat search parameters
-      operationId: statSearchParams
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '../_schemas/schemas.yml#/components/schemas/StatSearchParamRestObject'
-  /api/v1/stats/search/groupByTypes:
-    get:
-      tags:
-        - Misc
-      summary: List groupBy types
-      operationId: statSearchGroupByTypes
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '../_schemas/schemas.yml#/components/schemas/GroupByEnum'
-  /api/v1/stats/search/config:
-    get:
-      tags:
-        - Misc
-      summary: Stats Search Config Endpoint
-      operationId: statSearchConfig
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
-        - name: group
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '../_schemas/schemas.yml#/components/schemas/StatSearchConfigRestObject'
   /api/v1/stats/metrics:
     get:
       tags:

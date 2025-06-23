@@ -1,0 +1,160 @@
+openapi: 3.0.1
+info:
+  title: Stats API Season
+  description: Operations pertaining to seasons
+  version: 1.0.0
+
+paths:  
+  /api/v1/seasons/all:
+    get:
+      tags:
+        - Season
+      summary: View all seasons
+      description: This endpoint allows you to view all seasons for a given Division, League or Sport
+      operationId: allSeasons
+      parameters:
+        - name: divisionId
+          in: query
+          description: Unique Division Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: withGameTypeDates
+          in: query
+          description: Retrieve dates for each game type
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/SeasonsRestObject'
+  /api/v1/seasons:
+    get:
+      tags:
+        - Season
+      summary: View season info
+      description: This endpoint allows you to pull seasons
+      operationId: seasons
+      parameters:
+        - name: seasonId
+          in: path
+          description: Season of play
+          required: true
+          schema:
+            type: string
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: withGameTypeDates
+          in: query
+          description: Retrieve dates for each game type
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/SeasonsRestObject'
+  /api/v1/seasons/{seasonId}:
+    get:
+      tags:
+        - Season
+      summary: View season info
+      description: This endpoint allows you to pull seasons
+      operationId: seasons_1
+      parameters:
+        - name: seasonId
+          in: path
+          description: Season of play
+          required: true
+          schema:
+            type: string
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: withGameTypeDates
+          in: query
+          description: Retrieve dates for each game type
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/SeasonsRestObject'
