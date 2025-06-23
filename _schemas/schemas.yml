@@ -12932,7 +12932,12 @@ components:
         records:
           type: array
           items:
-            $ref: '#/components/schemas/TeamStandingsRecordContainerRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # Perfect example of recursive ref bullshit
+            # $ref: '#/components/schemas/TeamStandingsRecordContainerRestObject'
     TeamStandingsRecordContainerRestObject:
       type: object
       properties:

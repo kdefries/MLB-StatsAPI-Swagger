@@ -438,6 +438,12 @@ paths:
   /api/v1/sports/{sportId}:
     $ref: './endpoints/sports.yml#/paths/~1api~1v1~1sports~1{sportId}'
 
+  # Standings
+  /api/v1/standings/{standingsType}:
+    $ref: './endpoints/standings.yml#/paths/~1api~1v1~1standings~1{standingsType}'
+  /api/v1/standings:
+    $ref: './endpoints/standings.yml#/paths/~1api~1v1~1standings'
+
 
   /api/v1/teams/{teamId}/alumni:
     get:
@@ -4327,154 +4333,8 @@ paths:
 
 
 
-  /api/v1/standings/{standingsType}:
-    get:
-      tags:
-        - Standings
-      summary: View standings for a league
-      description: This endpoint allows you to pull standings
-      operationId: standings
-      parameters:
-        - name: standingsType
-          in: path
-          description: Type of season. Available types in /api/v1/standingsTypes
-          required: true
-          schema:
-            type: string
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: standingsTypes
-          in: query
-          description: Type of season. Available types in /api/v1/standingsTypes
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/StandingsType'
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: teamId
-          in: query
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: includeMLB
-          in: query
-          description: Determines whether to include major league teams when using the 'BY_ORGANIZATION' standings type
-          required: false
-          schema:
-            type: boolean
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StandingsRestObject'
-  /api/v1/standings:
-    get:
-      tags:
-        - Standings
-      summary: View standings for a league
-      description: This endpoint allows you to pull standings
-      operationId: standings_1
-      parameters:
-        - name: standingsType
-          in: path
-          description: Type of season. Available types in /api/v1/standingsTypes
-          required: true
-          schema:
-            type: string
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: standingsTypes
-          in: query
-          description: Type of season. Available types in /api/v1/standingsTypes
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/StandingsType'
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: teamId
-          in: query
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: includeMLB
-          in: query
-          description: Determines whether to include major league teams when using the 'BY_ORGANIZATION' standings type
-          required: false
-          schema:
-            type: boolean
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StandingsRestObject'
+
+
 
 
 
