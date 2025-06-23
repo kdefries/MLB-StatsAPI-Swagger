@@ -395,6 +395,10 @@ paths:
   /api/v1/props/play/predictions/adjust:
     $ref: './endpoints/predictions.yml#/paths/~1api~1v1~1props~1play~1predictions~1adjust'
 
+  # Reviews
+  /api/v1/review:
+    $ref: './endpoints/reviews.yml#/paths/~1api~1v1~1review'
+
 
   /api/v1/teams/{teamId}/alumni:
     get:
@@ -5672,48 +5676,7 @@ paths:
 
 
 
-  /api/v1/review:
-    get:
-      tags:
-        - Reviews
-      summary: Get review info
-      operationId: getReviewInfo
-      parameters:
-        - name: sportId
-          in: query
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Comma delimited list of Seasons of play
-          required: true
-          schema:
-            type: string
-        - name: gameType
-          in: query
-          description: Type of Game. Available types in /api/v1/gameTypes
-          required: false
-          schema:
-            $ref: '#/components/schemas/GameTypeEnum'
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StatContainerRestObject'
+
 
 
 
