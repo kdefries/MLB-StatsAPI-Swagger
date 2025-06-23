@@ -13534,9 +13534,17 @@ components:
         copyright:
           type: string
         topSeed:
-          $ref: '#/components/schemas/HomeRunDerbyRoundBatterRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/HomeRunDerbyRoundBatterRestObject'
         bottomSeed:
-          $ref: '#/components/schemas/HomeRunDerbyRoundBatterRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/HomeRunDerbyRoundBatterRestObject'
     HomeRunDerbyRestObject:
       type: object
       properties:
@@ -13553,7 +13561,11 @@ components:
         players:
           type: array
           items:
-            $ref: '#/components/schemas/BaseballPersonRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballPersonRestObject'
     HomeRunDerbyRoundBatterRestObject:
       type: object
       properties:
@@ -13566,7 +13578,11 @@ components:
         winner:
           type: boolean
         player:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         topDerbyHitData:
           $ref: '#/components/schemas/BaseballHitDataRestObject'
         hits:
@@ -13640,7 +13656,11 @@ components:
           type: integer
           format: int32
         currentBatter:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         clockStopped:
           type: boolean
         bonusTime:

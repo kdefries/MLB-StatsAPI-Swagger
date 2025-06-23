@@ -1,0 +1,255 @@
+openapi: 3.0.1
+info:
+  title: Stats API Homerun Derby
+  description: Operations pertaining to home run derby
+  version: 1.0.0
+
+paths:  
+  /api/v1/homeRunDerby/{gamePk}/pool:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View home run derby pool
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyPool
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby/pool:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View home run derby pool
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyPool_1
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby/{gamePk}/mixed:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View home run derby mixed mode (Bracket/Pool combo)
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyMixedMode
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby/mixed:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View home run derby mixed mode (Bracket/Pool combo)
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyMixedMode_1
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby/{gamePk}:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View a home run derby object
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyBracket
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View a home run derby object
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyBracket_1
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby/{gamePk}/bracket:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View a home run derby object
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyBracket_2
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
+  /api/v1/homeRunDerby/bracket:
+    get:
+      tags:
+        - Homerun Derby
+      summary: View a home run derby object
+      description: This endpoint allows you to pull home run derby information
+      operationId: homeRunDerbyBracket_3
+      parameters:
+        - name: gamePk
+          in: path
+          description: Unique Primary Key Representing a Game
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/HomeRunDerbyRestObject'
