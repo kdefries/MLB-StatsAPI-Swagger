@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  title: Stats API Uniforms
+  description: Operations pertaining to uniforms
+  version: 1.0.0
+
+paths:  
+  /api/v1/uniforms/team:
+    get:
+      tags:
+        - Uniforms
+      summary: View Team Uniform info
+      description: This endpoint allows you to pull team uniform data for a season
+      operationId: uniformsByTeam
+      parameters:
+        - name: teamIds
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/UniformsTeamsRestObject'
+  /api/v1/uniforms/game:
+    get:
+      tags:
+        - Uniforms
+      summary: View Game Uniform info
+      description: This endpoint allows you to pull team uniform data for a game
+      operationId: uniformsByGame
+      parameters:
+        - name: gamePks
+          in: query
+          description: Comma delimited list of unique primary keys
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/UniformsGamesRestObject'

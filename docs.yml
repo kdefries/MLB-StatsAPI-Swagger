@@ -500,6 +500,15 @@ paths:
   /api/v1/teams/{teamId}/alumni:
     $ref: './endpoints/teams.yml#/paths/~1api~1v1~1teams~1{teamId}~1alumni'
 
+  # Transactions
+  /api/v1/transactions:
+    $ref: './endpoints/transactions.yml#/paths/~1api~1v1~1transactions'
+
+  # Uniforms
+  /api/v1/uniforms/team:
+    $ref: './endpoints/uniforms.yml#/paths/~1api~1v1~1uniforms~1team'
+  /api/v1/uniforms/game:
+    $ref: './endpoints/uniforms.yml#/paths/~1api~1v1~1uniforms~1game'
 
 
   /api/v1/weather/venues/{venueId}/full:
@@ -882,199 +891,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/VenuesRestObject'
-  /api/v1/uniforms/team:
-    get:
-      tags:
-        - Uniforms
-      summary: View Team Uniform info
-      description: This endpoint allows you to pull team uniform data for a season
-      operationId: uniformsByTeam
-      parameters:
-        - name: teamIds
-          in: query
-          required: true
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UniformsTeamsRestObject'
-  /api/v1/uniforms/game:
-    get:
-      tags:
-        - Uniforms
-      summary: View Game Uniform info
-      description: This endpoint allows you to pull team uniform data for a game
-      operationId: uniformsByGame
-      parameters:
-        - name: gamePks
-          in: query
-          description: Comma delimited list of unique primary keys
-          required: true
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UniformsGamesRestObject'
-  /api/v1/transactions:
-    get:
-      tags:
-        - Transactions
-      summary: View transaction info
-      description: This endpoint allows you to pull transactions.
-      operationId: transactions
-      parameters:
-        - name: leagueId
-          in: query
-          description: Comma delimited list of Unique league identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: sportId
-          in: query
-          description: Comma delimited list of top level organizations of a sport
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: teamId
-          in: query
-          description: Comma delimited list of Unique Team identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: playerId
-          in: query
-          description: A unique identifier for a player
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: date
-          in: query
-          description: 'Date of Game. Format: YYYY-MM-DD'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: startDate
-          in: query
-          description: 'Start date for range of data (must be used with end date). Format: MM/DD/YYYY'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: endDate
-          in: query
-          description: 'End date for range of data (must be used with start date). Format: MM/DD/YYYY'
-          required: false
-          schema:
-            type: string
-            format: date
-        - name: transactionIds
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: transactionTypes
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: divisionIds
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: order
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/SortOrderEnum'
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/TransactionsRestObject'
+
+
 
 
 
