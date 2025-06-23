@@ -462,6 +462,12 @@ paths:
   /api/v1/stats/analytics/outsAboveAverage:
     $ref: './endpoints/stats.yml#/paths/~1api~1v1~1stats~1analytics~1outsAboveAverage'
 
+  # Streaks
+  /api/v1/streaks:
+    $ref: './endpoints/streaks.yml#/paths/~1api~1v1~1streaks'
+  /api/v1/streaks/types:
+    $ref: './endpoints/streaks.yml#/paths/~1api~1v1~1streaks~1types'
+
 
   /api/v1/teams/{teamId}/alumni:
     get:
@@ -2234,167 +2240,7 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/TeamsRestObject'
-  /api/v1/streaks:
-    get:
-      tags:
-        - Streaks
-      summary: View streaks
-      operationId: getStreaks
-      parameters:
-        - name: streakOrg
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/OrganizationType'
-        - name: streakStat
-          in: query
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/StreakStatEnum'
-        - name: streakSpan
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/StreakSpanEnum'
-        - name: streakLevel
-          in: query
-          required: false
-          schema:
-            $ref: '#/components/schemas/StreakLevelEnum'
-        - name: streakThreshold
-          in: query
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: inverse
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: startersOnly
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: statGroup
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/StatGroup'
-        - name: gameType
-          in: query
-          description: Type of Game. Available types in /api/v1/gameTypes
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/GameTypeEnum'
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-        - name: teamId
-          in: query
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: activeStreak
-          in: query
-          description: Whether or not a player is active
-          required: false
-          schema:
-            type: boolean
-        - name: limit
-          in: query
-          description: Number of results to return
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: playerId
-          in: query
-          description: A unique identifier for a player
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StreaksWrapperRestObject'
-      security:
-        - basicAuth: []
-        - bearerAuth: []
-  /api/v1/streaks/types:
-    get:
-      tags:
-        - Streaks
-      summary: View streaks parameter options
-      operationId: streakTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-                additionalProperties:
-                  type: array
-                  items:
-                    type: object
+
 
 
 

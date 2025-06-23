@@ -12338,19 +12338,35 @@ components:
         splits:
           type: array
           items:
-            $ref: '#/components/schemas/StatSplitsRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/StatSplitsRestObject'
         stats:
           $ref: '#/components/schemas/StatDataRestObject'
         splitsTiedWithOffset:
           type: array
           items:
-            $ref: '#/components/schemas/StatSplitsRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/StatSplitsRestObject'
         splitsTiedWithLimit:
           type: array
           items:
-            $ref: '#/components/schemas/StatSplitsRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/StatSplitsRestObject'
         player:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         team:
           type: object
           properties:
