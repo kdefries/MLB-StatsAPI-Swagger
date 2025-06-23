@@ -1082,12 +1082,18 @@ components:
             $ref: '#/components/schemas/AwardResultRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         sortOrder:
           type: integer
           format: int32
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPersonRestObject'
         votes:
           type: integer
@@ -1097,9 +1103,15 @@ components:
           format: int32
         sport:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/SportRestObject'
         league:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/LeagueRestObject'
         notes:
           type: string
@@ -1155,15 +1167,27 @@ components:
           type: string
         person:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPerson'
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPerson'
         coach:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPerson'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeam'
         awardDate:
           type: string
@@ -1181,12 +1205,21 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPersonRestObject'
         coach:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPersonRestObject'
         copyright:
           type: string
@@ -1241,6 +1274,9 @@ components:
           $ref: '#/components/schemas/BaseballTeamReview'
         challengingTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
     BaseballChallenge:
       type: object
@@ -1301,45 +1337,108 @@ components:
           items:
             type: string
         winner:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         loser:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         save:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
     BaseballDefenseRestObject:
       type: object
       properties:
         copyright:
           type: string
         pitcher:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         catcher:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         first:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         second:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         third:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         shortstop:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         left:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         center:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         right:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         batter:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         onDeck:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         inHole:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         battingOrder:
           type: integer
           format: int32
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
     BaseballDraftProspect:
       type: object
@@ -1394,9 +1493,17 @@ components:
         signingBonus:
           type: string
         person:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPerson'
         team:
-          $ref: '#/components/schemas/BaseballTeam'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballTeam'
         draftType:
           $ref: '#/components/schemas/DraftTypeEnum'
         draftStatus:
@@ -1445,11 +1552,17 @@ components:
           type: string
         home:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/LocationRestObject'
         scoutingReport:
           type: string
         school:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/SchoolRestObject'
         blurb:
           type: string
@@ -1457,12 +1570,21 @@ components:
           type: string
         person:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPersonRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         draftType:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/DraftTypeEnumRestObject'
         isDrafted:
           type: boolean
@@ -1500,6 +1622,9 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         alertId:
           type: string
@@ -1984,36 +2109,84 @@ components:
         homePlayers:
           type: array
           items:
-            $ref: '#/components/schemas/BaseballPersonRestObject'
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballPersonRestObject'
         awayPlayers:
           type: array
           items:
-            $ref: '#/components/schemas/BaseballPersonRestObject'
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballPersonRestObject'
     BaseballOffenseRestObject:
       type: object
       properties:
         copyright:
           type: string
         batter:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         onDeck:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         inHole:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         first:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         second:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         third:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         postOnFirst:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         postOnSecond:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         postOnThird:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         pitcher:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         batterPosition:
           $ref: '#/components/schemas/PositionRestObject'
         battingOrder:
@@ -2021,6 +2194,9 @@ components:
           format: int32
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
     BaseballPerson:
       type: object
@@ -2359,6 +2535,9 @@ components:
           type: boolean
         currentTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         primaryPosition:
           $ref: '#/components/schemas/PositionRestObject'
@@ -2425,6 +2604,9 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/AwardRestObject'
         draft:
           type: array
@@ -2496,6 +2678,9 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/BaseballPersonRestObject'
         xrefIds:
           type: array
@@ -3152,15 +3337,27 @@ components:
         type:
           type: string
         player:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         umpire:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         position:
           $ref: '#/components/schemas/PositionRestObject'
         battingOrder:
           type: string
         replacedPlayer:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         base:
           type: integer
           format: int32
@@ -3219,7 +3416,11 @@ components:
         playEvents:
           type: array
           items:
-            $ref: '#/components/schemas/BaseballPlayEventRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballPlayEventRestObject'
         credits:
           type: array
           items:
@@ -3303,6 +3504,9 @@ components:
           $ref: '#/components/schemas/BaseballTeamReview'
         challengingTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
     BaseballRoster:
       type: object
@@ -4070,7 +4274,11 @@ components:
         teams:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/BaseballScheduleItemTeamRestObject'
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballScheduleItemTeamRestObject'
         linescore:
           $ref: '#/components/schemas/BaseballLinescoreRestObject'
         decisions:
@@ -4080,7 +4288,11 @@ components:
           items:
             $ref: '#/components/schemas/BaseballPlayRestObject'
         venue:
-          $ref: '#/components/schemas/VenueRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/VenueRestObject'
         tickets:
           type: array
           items:
@@ -4232,6 +4444,9 @@ components:
           format: int32
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         isWinner:
           type: boolean
@@ -4301,21 +4516,39 @@ components:
           type: boolean
         roster:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballRoster'
         nextGameSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         previousGameSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         nextSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         previousSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         content:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/TeamContentCms'
         deviceProperties:
           $ref: '#/components/schemas/JsonNode'
@@ -4323,9 +4556,15 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/BaseballTicket'
         playoffInfo:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/TeamPlayoffs'
         homeAway:
           type: string
@@ -4446,14 +4685,23 @@ components:
             type: string
         springLeague:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/LeagueRestObject'
         xrefIds:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/XrefIdRestObject'
         allStarStatus:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/AllStarEnum'
         id:
           type: integer
@@ -4467,9 +4715,15 @@ components:
           format: int32
         venue:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/VenueRestObject'
         springVenue:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/VenueRestObject'
         teamCode:
           type: string
@@ -4487,60 +4741,111 @@ components:
           type: string
         league:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/LeagueRestObject'
         division:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/DivisionRestObject'
         sport:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/SportRestObject'
         conference:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/ConferenceRestObject'
         franchise:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/FranchiseRestObject'
         teamStats:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #     $ref: '#/components/schemas/StatContainerRestObject'
         roster:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/RosterRestObject'
         teamLeaders:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #     $ref: '#/components/schemas/LeadersRestObject'
         nextGameSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/ScheduleRestObject'
         previousGameSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/ScheduleRestObject'
         nextSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/ScheduleRestObject'
         previousSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/ScheduleRestObject'
         content:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/TeamContentCms'
         deviceProperties:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/JsonNode'
         social:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/SocialMediaRestObject'
         shortName:
           type: string
         record:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/TeamStandingsRecordRestObject'
         playoffInfo:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/TeamPlayoffs'
         homeAway:
           type: string
@@ -4580,6 +4885,9 @@ components:
       properties:
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeam'
         wins:
           type: integer
@@ -4806,7 +5114,11 @@ components:
         violationDescription:
           type: string
         violationPlayer:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPerson'
     BatterDetailType:
       type: string
       enum:
@@ -5275,6 +5587,9 @@ components:
           $ref: '#/components/schemas/DynamicEnumRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
     Designation:
       type: object
@@ -6688,12 +7003,18 @@ components:
         playoffRound:
           type: integer
           format: int32
-        # Nested Ref
-        # league:
-        #   $ref: '#/components/schemas/LeagueRestObject'
-        # Nested Ref
-        # sport:
-        #   $ref: '#/components/schemas/SportRestObject'
+        league:
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/LeagueRestObject'
+        sport:
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/SportRestObject'
         gameType:
           $ref: '#/components/schemas/GameTypeEnum'
     GroupedStatData:
@@ -6711,24 +7032,45 @@ components:
           $ref: '#/components/schemas/StatData'
         pitching:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
         hitting:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
         fielding:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
         running:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
         catching:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
         rankings:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
         percentiles:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/GroupedStatData'
     GroupedStatDataRestObject:
       type: object
@@ -7070,9 +7412,15 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         league:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/LeagueRestObject'
         totalSplits:
           type: integer
@@ -7338,19 +7686,39 @@ components:
         copyright:
           type: string
         batter:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         batSide:
           $ref: '#/components/schemas/DynamicEnumRestObject'
         pitcher:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         pitchHand:
           $ref: '#/components/schemas/DynamicEnumRestObject'
         postOnFirst:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         postOnSecond:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         postOnThird:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         batterHotColdZoneStats:
           $ref: '#/components/schemas/StatsRestObject'
         pitcherHotColdZoneStats:
@@ -8052,7 +8420,11 @@ components:
         copyright:
           type: string
         player:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         position:
           $ref: '#/components/schemas/PositionRestObject'
         credit:
@@ -8089,7 +8461,11 @@ components:
         pickInRound:
           type: integer
           format: int32
-        # team:
+        team:
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/BaseballTeamRestObject'
     PlayerLeader:
       type: object
@@ -8124,15 +8500,27 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         league:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/LeagueRestObject'
         person:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPersonRestObject'
         sport:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/SportRestObject'
         season:
           type: string
@@ -8662,7 +9050,11 @@ components:
         additionalReviews:
           type: array
           items:
-            $ref: '#/components/schemas/ReviewDetails'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/ReviewDetails'
     Role:
       type: string
       enum:
@@ -9138,6 +9530,9 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/BaseballTeamRestObject'
         trackingVersion:
           $ref: '#/components/schemas/TrackingVersionRestObject'
@@ -9472,9 +9867,16 @@ components:
           format: int32
         winningTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         losingTeam:
-          $ref: '#/components/schemas/BaseballTeamRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballTeamRestObject'
         description:
           type: string
         shortDescription:
@@ -9787,9 +10189,15 @@ components:
           format: int32
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPerson'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeam'
         sport:
           $ref: '#/components/schemas/Sport'
@@ -9844,22 +10252,40 @@ components:
         splits:
           type: array
           items:
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/StatSplitsRestObject'
         stats:
           $ref: '#/components/schemas/StatDataRestObject'
         splitsTiedWithOffset:
           type: array
           items:
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/StatSplitsRestObject'
         splitsTiedWithLimit:
           type: array
           items:
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/StatSplitsRestObject'
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/BaseballPersonRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         sport:
           $ref: '#/components/schemas/SportRestObject'
@@ -9906,6 +10332,9 @@ components:
           type: string
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/BaseballPersonRestObject'
     StatSplits:
       type: object
@@ -9922,9 +10351,15 @@ components:
           $ref: '#/components/schemas/GameTypeEnum'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeam'
         player:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPerson'
         homeTeam:
           $ref: '#/components/schemas/BaseballTeam'
@@ -10009,14 +10444,23 @@ components:
           $ref: '#/components/schemas/GroupedStatDataRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         player:
           $ref: '#/components/schemas/BaseballPersonRestObject'
         homeTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         awayTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         venue:
           $ref: '#/components/schemas/VenueRestObject'
@@ -10026,6 +10470,9 @@ components:
           $ref: '#/components/schemas/SportRestObject'
         opponent:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         opponentDivision:
           $ref: '#/components/schemas/DivisionRestObject'
@@ -10315,6 +10762,9 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         runs:
           type: integer
@@ -10342,6 +10792,9 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         division:
           $ref: '#/components/schemas/Division'
@@ -10705,12 +11158,21 @@ components:
           format: int32
         person:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballPersonRestObject'
         fromTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/BaseballTeamRestObject'
         toTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
         #   $ref: '#/components/schemas/BaseballTeamRestObject'
         date:
           type: string
@@ -10878,63 +11340,108 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/Venue'
         parentVenues:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/Venue'
         residentVenues:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/Venue'
         relatedApplications:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/RelatedApplication'
         relatedImages:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/Image'
         socialMediaInfo:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/SocialMediaInfo'
         menu:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/VenueCms'
         metadata:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/VenueMetadata'
         schedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         nextSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         previousSchedule:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballSchedule'
         xrefIds:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/XrefId'
         season:
           type: string
         trackingVersion:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/TrackingVersion'
         trackingSystemOwner:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/TrackingSystemOwner'
         coachingVideo:
           uniqueItems: true
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/MediaSourceType'
         appEnabled:
           type: boolean
@@ -10948,6 +11455,9 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/Privilege'
     VenueCms:
       type: object
@@ -11027,11 +11537,23 @@ components:
         menu:
           $ref: '#/components/schemas/JsonNode'
         schedule:
-          $ref: '#/components/schemas/ScheduleRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/ScheduleRestObject'
         nextSchedule:
-          $ref: '#/components/schemas/ScheduleRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/ScheduleRestObject'
         previousSchedule:
-          $ref: '#/components/schemas/ScheduleRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/ScheduleRestObject'
         metadata:
           $ref: '#/components/schemas/VenueMetadataRestObject'
         appEnabled:
@@ -11660,6 +12182,9 @@ components:
           type: array
           items:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/BaseballTeamRestObject'
     PeopleRestObject:
       type: object
@@ -11828,6 +12353,9 @@ components:
           $ref: '#/components/schemas/BaseballPersonRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         sport:
           $ref: '#/components/schemas/SportRestObject'
@@ -12426,6 +12954,9 @@ components:
           $ref: '#/components/schemas/SportRestObject'
         organization:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         lastUpdated:
           type: string
@@ -12636,9 +13167,15 @@ components:
           $ref: '#/components/schemas/BaseballPersonRestObject'
         originalTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         newTeam:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         notes:
           type: string
@@ -12810,6 +13347,9 @@ components:
           $ref: '#/components/schemas/BaseballPersonRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         organizationId:
           type: integer
@@ -13216,6 +13756,9 @@ components:
           $ref: '#/components/schemas/BaseballPersonRestObject'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         sport:
           $ref: '#/components/schemas/SportRestObject'
@@ -13375,6 +13918,9 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         league:
           $ref: '#/components/schemas/LeagueRestObject'
@@ -13435,14 +13981,25 @@ components:
           type: string
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         inning:
           type: integer
           format: int32
         pitcher:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         batter:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         coordinates:
           $ref: '#/components/schemas/Coordinate'
         type:
@@ -13553,13 +14110,20 @@ components:
       properties:
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
         teamStats:
           $ref: '#/components/schemas/StatsRestObject'
         players:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/BaseballRosterEntryRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballRosterEntryRestObject'
         batters:
           type: array
           items:
@@ -13668,7 +14232,11 @@ components:
         strikeZoneInfo:
           $ref: '#/components/schemas/JsonNode'
         metaData:
-          $ref: '#/components/schemas/StatSplitsRestObject'
+          type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/StatSplitsRestObject'
         playResult:
           $ref: '#/components/schemas/PlayResultRestObject'
         targetPositions:
@@ -13686,7 +14254,11 @@ components:
         positionMap:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/BaseballPersonRestObject'
+            type: object
+            properties:
+              note:
+                example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballPersonRestObject'
         diagram:
           type: string
         contextMetrics:
@@ -14279,11 +14851,18 @@ components:
           type: object
           additionalProperties:
             type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
             # $ref: '#/components/schemas/BaseballTeamRestObject'
         players:
           type: object
           additionalProperties:
-            $ref: '#/components/schemas/BaseballPersonRestObject'
+            type: object
+            properties:
+            note:
+              example: 'Disabled Recursive Ref'
+            # $ref: '#/components/schemas/BaseballPersonRestObject'
         venue:
           $ref: '#/components/schemas/VenueRestObject'
         officialVenue:
@@ -14305,11 +14884,23 @@ components:
         probablePitchers:
           $ref: '#/components/schemas/BaseballGameProbableRestObject'
         officialScorer:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         primaryDatacaster:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         secondaryDatacaster:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         ruleSettings:
           type: array
           items:
@@ -14378,15 +14969,35 @@ components:
         copyright:
           type: string
         plays:
-          $ref: '#/components/schemas/BaseballPlayByPlayRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPlayByPlayRestObject'
         linescore:
-          $ref: '#/components/schemas/BaseballLinescoreRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballLinescoreRestObject'
         boxscore:
-          $ref: '#/components/schemas/BaseballBoxscoreRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballBoxscoreRestObject'
         decisions:
-          $ref: '#/components/schemas/BaseballDecisionRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballDecisionRestObject'
         leaders:
-          $ref: '#/components/schemas/BaseballGameLeadersRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballGameLeadersRestObject'
     BaseballGameMetaDataRestObject:
       type: object
       properties:
@@ -14547,11 +15158,19 @@ components:
         video:
           $ref: '#/components/schemas/IFeedRestObject'
         metaData:
-          $ref: '#/components/schemas/StatSplitsRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/StatSplitsRestObject'
         playResult:
           $ref: '#/components/schemas/PlayResultRestObject'
         playByPlay:
-          $ref: '#/components/schemas/BaseballPlayRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPlayRestObject'
     GameModeTO:
       type: object
       properties:
@@ -14568,9 +15187,17 @@ components:
         game:
           $ref: '#/components/schemas/BaseballScheduleItemRestObject'
         expectedStatisticsData:
-          $ref: '#/components/schemas/StatDataRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/StatDataRestObject'
         runnerOnThird:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         leftFieldSacFlyProbability:
           $ref: '#/components/schemas/SacFlyProbability'
         centerFieldSacFlyProbability:
@@ -14593,7 +15220,11 @@ components:
           type: integer
           format: int32
         fielder:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          properties:
+          note:
+            example: 'Disabled Recursive Ref'
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
     BaseballDraftLatestRestObject:
       type: object
       properties:
@@ -14797,6 +15428,9 @@ components:
           $ref: '#/components/schemas/GameTypeEnum'
         team:
           type: object
+          properties:
+            note:
+              example: 'Disabled Recursive Ref'
           # $ref: '#/components/schemas/BaseballTeamRestObject'
     AttendanceRestObject:
       type: object
