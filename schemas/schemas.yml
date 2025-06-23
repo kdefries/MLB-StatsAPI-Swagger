@@ -1076,26 +1076,30 @@ components:
           format: date
         season:
           type: string
-        # results:
-        #   type: array
-        #   items:
-        #     $ref: '#/components/schemas/AwardResultRestObject'
-        # team:
-        #   $ref: '#/components/schemas/BaseballTeamRestObject'
-        # sortOrder:
-        #   type: integer
-        #   format: int32
-        # player:
-        #   $ref: '#/components/schemas/BaseballPersonRestObject'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/AwardResultRestObject'
+        team:
+          type: object
+          # $ref: '#/components/schemas/BaseballTeamRestObject'
+        sortOrder:
+          type: integer
+          format: int32
+        player:
+          type: object
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         votes:
           type: integer
           format: int32
         votesAvailable:
           type: integer
           format: int32
-        # sport:
+        sport:
+          type: object
         #   $ref: '#/components/schemas/SportRestObject'
-        # league:
+        league:
+          type: object
         #   $ref: '#/components/schemas/LeagueRestObject'
         notes:
           type: string
@@ -1150,13 +1154,17 @@ components:
         rank:
           type: string
         person:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          # $ref: '#/components/schemas/BaseballPerson'
         player:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          # $ref: '#/components/schemas/BaseballPerson'
         coach:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          # $ref: '#/components/schemas/BaseballPerson'
         team:
-          $ref: '#/components/schemas/BaseballTeam'
+          type: object
+          # $ref: '#/components/schemas/BaseballTeam'
         awardDate:
           type: string
           format: date
@@ -1172,11 +1180,14 @@ components:
         rank:
           type: string
         team:
-          $ref: '#/components/schemas/BaseballTeamRestObject'
+          type: object
+          # $ref: '#/components/schemas/BaseballTeamRestObject'
         player:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         coach:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
         copyright:
           type: string
     BaseballABSChallenge:
@@ -1430,22 +1441,24 @@ components:
           type: string
         signingBonus:
           type: string
-        # home:
-        #   $ref: '#/components/schemas/LocationRestObject'
-        # scoutingReport:
-        #   type: string
-        # school:
-        #   $ref: '#/components/schemas/SchoolRestObject'
-        # blurb:
-        #   type: string
-        # headshotLink:
-        #   type: string
-        # person:
-        #   $ref: '#/components/schemas/BaseballPersonRestObject'
-        # team:
-        #   $ref: '#/components/schemas/BaseballTeamRestObject'
-        # draftType:
-        #   $ref: '#/components/schemas/DraftTypeEnumRestObject'
+        home:
+          $ref: '#/components/schemas/LocationRestObject'
+        scoutingReport:
+          type: string
+        school:
+          $ref: '#/components/schemas/SchoolRestObject'
+        blurb:
+          type: string
+        headshotLink:
+          type: string
+        person:
+          type: object
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
+        team:
+          type: object
+          # $ref: '#/components/schemas/BaseballTeamRestObject'
+        draftType:
+          $ref: '#/components/schemas/DraftTypeEnumRestObject'
         isDrafted:
           type: boolean
         isPass:
@@ -2403,7 +2416,8 @@ components:
         awards:
           type: array
           items:
-            $ref: '#/components/schemas/AwardRestObject'
+            type: object
+            # $ref: '#/components/schemas/AwardRestObject'
         draft:
           type: array
           items:
@@ -2473,7 +2487,8 @@ components:
         relatives:
           type: array
           items:
-            $ref: '#/components/schemas/BaseballPersonRestObject'
+            type: object
+            # $ref: '#/components/schemas/BaseballPersonRestObject'
         xrefIds:
           type: array
           items:
@@ -4411,14 +4426,17 @@ components:
           type: array
           items:
             type: string
-        # springLeague:
-        #   $ref: '#/components/schemas/LeagueRestObject'
-        # xrefIds:
-        #   type: array
-        #   items:
-        #     $ref: '#/components/schemas/XrefIdRestObject'
-        # allStarStatus:
-        #   $ref: '#/components/schemas/AllStarEnum'
+        springLeague:
+          type: object
+          # $ref: '#/components/schemas/LeagueRestObject'
+        xrefIds:
+          type: array
+          items:
+            type: object
+            # $ref: '#/components/schemas/XrefIdRestObject'
+        allStarStatus:
+          type: object
+          # $ref: '#/components/schemas/AllStarEnum'
         id:
           type: integer
           format: int32
@@ -4429,9 +4447,11 @@ components:
         season:
           type: integer
           format: int32
-        # venue:
-        #   $ref: '#/components/schemas/VenueRestObject'
-        # springVenue:
+        venue:
+          type: object
+          $ref: '#/components/schemas/VenueRestObject'
+        springVenue:
+          type: object
         #   $ref: '#/components/schemas/VenueRestObject'
         teamCode:
           type: string
@@ -4447,45 +4467,62 @@ components:
           type: string
         firstYearOfPlay:
           type: string
-        # league:
+        league:
+          type: object
         #   $ref: '#/components/schemas/LeagueRestObject'
-        # division:
+        division:
+          type: object
         #   $ref: '#/components/schemas/DivisionRestObject'
-        # sport:
+        sport:
+          type: object
         #   $ref: '#/components/schemas/SportRestObject'
-        # conference:
+        conference:
+          type: object
         #   $ref: '#/components/schemas/ConferenceRestObject'
-        # franchise:
+        franchise:
+          type: object
         #   $ref: '#/components/schemas/FranchiseRestObject'
-        # teamStats:
-        #   type: array
-        #   items:
+        teamStats:
+          type: array
+          items:
+            type: object
         #     $ref: '#/components/schemas/StatContainerRestObject'
-        # roster:
+        roster:
+          type: object
         #   $ref: '#/components/schemas/RosterRestObject'
-        # teamLeaders:
-        #   type: array
-        #   items:
+        teamLeaders:
+          type: array
+          items:
+            type: object
         #     $ref: '#/components/schemas/LeadersRestObject'
-        # nextGameSchedule:
+        nextGameSchedule:
+          type: object
         #   $ref: '#/components/schemas/ScheduleRestObject'
-        # previousGameSchedule:
+        previousGameSchedule:
+          type: object
         #   $ref: '#/components/schemas/ScheduleRestObject'
-        # nextSchedule:
+        nextSchedule:
+          type: object
         #   $ref: '#/components/schemas/ScheduleRestObject'
-        # previousSchedule:
+        previousSchedule:
+          type: object
         #   $ref: '#/components/schemas/ScheduleRestObject'
-        # content:
+        content:
+          type: object
         #   $ref: '#/components/schemas/TeamContentCms'
-        # deviceProperties:
+        deviceProperties:
+          type: object
         #   $ref: '#/components/schemas/JsonNode'
-        # social:
+        social:
+          type: object
         #   $ref: '#/components/schemas/SocialMediaRestObject'
-        # shortName:
-        #   type: string
-        # record:
+        shortName:
+          type: string
+        record:
+          type: object
         #   $ref: '#/components/schemas/TeamStandingsRecordRestObject'
-        # playoffInfo:
+        playoffInfo:
+          type: object
         #   $ref: '#/components/schemas/TeamPlayoffs'
         homeAway:
           type: string
@@ -4500,8 +4537,8 @@ components:
           type: string
         clubName:
           type: string
-        # location:
-        #   $ref: '#/components/schemas/LocationRestObject'
+        location:
+          $ref: '#/components/schemas/LocationRestObject'
         active:
           type: boolean
         placeholder:
@@ -5218,7 +5255,8 @@ components:
         status:
           $ref: '#/components/schemas/DynamicEnumRestObject'
         team:
-          $ref: '#/components/schemas/BaseballTeamRestObject'
+          type: object
+          # $ref: '#/components/schemas/BaseballTeamRestObject'
     Designation:
       type: object
       properties:
@@ -6653,19 +6691,26 @@ components:
         tracking:
           $ref: '#/components/schemas/StatData'
         pitching:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
         hitting:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
         fielding:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
         running:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
         catching:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
         rankings:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
         percentiles:
-          $ref: '#/components/schemas/GroupedStatData'
+          type: object
+          # $ref: '#/components/schemas/GroupedStatData'
     GroupedStatDataRestObject:
       type: object
       properties:
@@ -9714,9 +9759,11 @@ components:
           type: integer
           format: int32
         player:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          # $ref: '#/components/schemas/BaseballPerson'
         team:
-          $ref: '#/components/schemas/BaseballTeam'
+          type: object
+          # $ref: '#/components/schemas/BaseballTeam'
         sport:
           $ref: '#/components/schemas/Sport'
         season:
@@ -9756,43 +9803,45 @@ components:
           type: object
           additionalProperties:
             type: object
-        # type:
-        #   $ref: '#/components/schemas/StatType'
-        # group:
-        #   $ref: '#/components/schemas/StatGroup'
-        # totalSplits:
-        #   type: integer
-        #   format: int32
-        # exemptions:
-        #   type: array
-        #   items:
-        #     $ref: '#/components/schemas/StatExemptionRestObject'
-        # splits:
-        #   type: array
-        #   items:
-        #     $ref: '#/components/schemas/StatSplitsRestObject'
-        # stats:
-        #   $ref: '#/components/schemas/StatDataRestObject'
-        # splitsTiedWithOffset:
-        #   type: array
-        #   items:
-        #     $ref: '#/components/schemas/StatSplitsRestObject'
-        # splitsTiedWithLimit:
-        #   type: array
-        #   items:
-        #     $ref: '#/components/schemas/StatSplitsRestObject'
-        # player:
+        type:
+          $ref: '#/components/schemas/StatType'
+        group:
+          $ref: '#/components/schemas/StatGroup'
+        totalSplits:
+          type: integer
+          format: int32
+        exemptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatExemptionRestObject'
+        splits:
+          type: array
+          items:
+            # $ref: '#/components/schemas/StatSplitsRestObject'
+        stats:
+          $ref: '#/components/schemas/StatDataRestObject'
+        splitsTiedWithOffset:
+          type: array
+          items:
+            # $ref: '#/components/schemas/StatSplitsRestObject'
+        splitsTiedWithLimit:
+          type: array
+          items:
+            # $ref: '#/components/schemas/StatSplitsRestObject'
+        player:
+          type: object
         #   $ref: '#/components/schemas/BaseballPersonRestObject'
-        # team:
-        #   $ref: '#/components/schemas/BaseballTeamRestObject'
-        # sport:
-        #   $ref: '#/components/schemas/SportRestObject'
-        # season:
-        #   type: string
-        # gameType:
-        #   $ref: '#/components/schemas/GameTypeEnum'
-        # playerPool:
-        #   $ref: '#/components/schemas/PlayerPoolEnum'
+        team:
+          type: object
+          # $ref: '#/components/schemas/BaseballTeamRestObject'
+        sport:
+          $ref: '#/components/schemas/SportRestObject'
+        season:
+          type: string
+        gameType:
+          $ref: '#/components/schemas/GameTypeEnum'
+        playerPool:
+          $ref: '#/components/schemas/PlayerPoolEnum'
     StatData:
       type: object
       properties:
@@ -9829,7 +9878,8 @@ components:
         exemptionName:
           type: string
         player:
-          $ref: '#/components/schemas/BaseballPersonRestObject'
+          type: object
+        #   $ref: '#/components/schemas/BaseballPersonRestObject'
     StatSplits:
       type: object
       properties:
@@ -9844,9 +9894,11 @@ components:
         gameType:
           $ref: '#/components/schemas/GameTypeEnum'
         team:
-          $ref: '#/components/schemas/BaseballTeam'
+          type: object
+          # $ref: '#/components/schemas/BaseballTeam'
         player:
-          $ref: '#/components/schemas/BaseballPerson'
+          type: object
+          # $ref: '#/components/schemas/BaseballPerson'
         homeTeam:
           $ref: '#/components/schemas/BaseballTeam'
         awayTeam:
@@ -10618,11 +10670,14 @@ components:
         id:
           type: integer
           format: int32
-        # person:
-        #   $ref: '#/components/schemas/BaseballPersonRestObject'
-        # fromTeam:
+        person:
+          type: object
+          # $ref: '#/components/schemas/BaseballPersonRestObject'
+        fromTeam:
+          type: object
         #   $ref: '#/components/schemas/BaseballTeamRestObject'
-        # toTeam:
+        toTeam:
+          type: object
         #   $ref: '#/components/schemas/BaseballTeamRestObject'
         date:
           type: string
