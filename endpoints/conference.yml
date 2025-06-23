@@ -1,0 +1,87 @@
+openapi: 3.0.1
+info:
+  title: Stats API Conference
+  description: Operations pertaining to conferences
+  version: 1.0.0
+
+paths:
+  /api/v1/conferences:
+    get:
+      tags:
+        - Conference
+      summary: View conference info
+      operationId: conferences
+      parameters:
+        - name: conferenceId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: includeInactive
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/ConferencesRestObject'
+  /api/v1/conferences/{conferenceId}:
+    get:
+      tags:
+        - Conference
+      summary: View conference info
+      operationId: conferences_1
+      parameters:
+        - name: conferenceId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: includeInactive
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/ConferencesRestObject'

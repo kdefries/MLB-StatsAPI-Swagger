@@ -1,0 +1,5 @@
+openapi: 3.0.1
+info:
+  title: Stats API Closed
+  description: Operations pertaining to closed
+  version: 1.0.0

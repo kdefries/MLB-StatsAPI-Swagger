@@ -13,72 +13,71 @@ servers:
   - url: http://localhost:8080
     description: Local
 tags:
-  - name: Reviews
-  - name: Bat Tracking
-    description: Operations pertaining to bat tracking data
-  - name: Attendance
-  - name: League
-    description: Operations pertaining to leagues
-  - name: Predictions
-  - name: Sports
-    description: Operations pertaining to sports
-  - name: Weather
-    description: Operations pertaining to weather data
-  - name: Misc
-  - name: High/Low
-    description: Operations pertaining to high/low stats
-  - name: Job
-    description: Operations pertaining to jobs
-  - name: Division
-    description: Operations pertaining to divisions
-  - name: Game
-    description: Operations pertaining to games
-  - name: Misc
-    description: Config elements
-  - name: Homerun Derby
-    description: Operations pertaining to home run derby
-  - name: Closed
-    description: Collapsed tags
-    x-tag-expanded: 'false'
-  - name: Streaks
-    description: Endpoints for stats streaks
-  - name: Stats
-    description: Operations pertaining to stats
-  - name: Venues
-    description: Operations pertaining to venues
-  - name: Person
-    description: Operations pertaining to players
-  - name: Awards
-    description: Operations pertaining to awards
-  - name: Game Pace
   - name: analytics
     description: Operations pertaining to field tracking and analytics
     x-tag-expanded: 'true'
+  - name: Attendance
+  - name: Awards
+    description: Operations pertaining to awards
+  - name: Bat Tracking
+    description: Operations pertaining to bat tracking data
+  - name: Biomechanics
+    description: Operations pertaining to biomechanical data
   - name: Broadcast
     description: Operations pertaining to broadcasts
+  - name: Closed
+    description: Collapsed tags
+    x-tag-expanded: 'false'
+  - name: Conference
+    description: Operations pertaining to conferences
+  - name: Division
+    description: Operations pertaining to divisions
+  - name: Draft
+    description: Operations pertaining to MLB BaseballDraft
+  - name: Game
+    description: Operations pertaining to games
+  - name: Game Pace
+  - name: High/Low
+    description: Operations pertaining to high/low stats
+  - name: Homerun Derby
+    description: Operations pertaining to home run derby
+  - name: Job
+    description: Operations pertaining to jobs
+  - name: League
+    description: Operations pertaining to leagues
+  - name: Milestones
+    description: Operations pertaining to milestones
+  - name: Misc
+    description: Config elements
+  - name: Person
+    description: Operations pertaining to players
+  - name: Predictions
+  - name: Reviews
   - name: Schedule
     description: Operations pertaining to schedules
     x-tag-expanded: 'false'
-  - name: Uniforms
-    description: Operations pertaining to uniforms
-  - name: Draft
-    description: Operations pertaining to MLB BaseballDraft
-  - name: Teams
-    description: Operations pertaining to teams
-  - name: Biomechanics
-    description: Operations pertaining to biomechanical data
-  - name: Standings
-    description: Operations pertaining to teams
-  - name: Conference
-    description: Operations pertaining to conferences
-  - name: Transactions
-    description: Operations pertaining to transactions
-  - name: Skeletal
-    description: Operations pertaining to skeletal data
   - name: Season
     description: Operations pertaining to seasons
-  - name: Milestones
-    description: Operations pertaining to milestones
+  - name: Skeletal
+    description: Operations pertaining to skeletal data
+  - name: Sports
+    description: Operations pertaining to sports
+  - name: Standings
+    description: Operations pertaining to teams
+  - name: Stats
+    description: Operations pertaining to stats
+  - name: Streaks
+    description: Endpoints for stats streaks
+  - name: Teams
+    description: Operations pertaining to teams
+  - name: Transactions
+    description: Operations pertaining to transactions
+  - name: Uniforms
+    description: Operations pertaining to uniforms
+  - name: Venues
+    description: Operations pertaining to venues
+  - name: Weather
+    description: Operations pertaining to weather data
 paths:
   # Analytics
   /api/v1/game/{gamePk}/{guid}/contextMetricsAverages:
@@ -124,6 +123,20 @@ paths:
   /api/v1/broadcast:
     $ref: './endpoints/broadcast.yml#/paths/~1api~1v1~1broadcast'
 
+  # Closed
+  # ???
+
+  # Conference
+  /api/v1/conferences:
+    $ref: './endpoints/conference.yml#/paths/~1api~1v1~1conferences'
+  /api/v1/conferences/{conferenceId}:
+    $ref: './endpoints/conference.yml#/paths/~1api~1v1~1conferences~1{conferenceId}'
+
+  # Division
+  /api/v1/divisions:
+    $ref: './endpoints/division.yml#/paths/~1api~1v1~1divisions'
+  /api/v1/divisions/{divisionId}:
+    $ref: './endpoints/division.yml#/paths/~1api~1v1~1divisions~1{divisionId}'
 
   /api/v1/teams/{teamId}/alumni:
     get:
@@ -9139,202 +9152,9 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/BaseballDraftListRestObject'
-  /api/v1/divisions:
-    get:
-      tags:
-        - Division
-      summary: Get division information
-      description: This endpoint allows you to pull divisions
-      operationId: divisions
-      parameters:
-        - name: divisionId
-          in: path
-          description: Unique Division Identifier
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: includeInactive
-          in: query
-          description: Whether or not to include inactive
-          required: false
-          schema:
-            type: boolean
-            default: false
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DivisionsRestObject'
-  /api/v1/divisions/{divisionId}:
-    get:
-      tags:
-        - Division
-      summary: Get division information
-      description: This endpoint allows you to pull divisions
-      operationId: divisions_1
-      parameters:
-        - name: divisionId
-          in: path
-          description: Unique Division Identifier
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: includeInactive
-          in: query
-          description: Whether or not to include inactive
-          required: false
-          schema:
-            type: boolean
-            default: false
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DivisionsRestObject'
-  /api/v1/conferences:
-    get:
-      tags:
-        - Conference
-      summary: View conference info
-      operationId: conferences
-      parameters:
-        - name: conferenceId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: includeInactive
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ConferencesRestObject'
-  /api/v1/conferences/{conferenceId}:
-    get:
-      tags:
-        - Conference
-      summary: View conference info
-      operationId: conferences_1
-      parameters:
-        - name: conferenceId
-          in: path
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: includeInactive
-          in: query
-          required: false
-          schema:
-            type: boolean
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ConferencesRestObject'
+
+
+
   /api/v1/coachingVideoTypes:
     get:
       tags:
