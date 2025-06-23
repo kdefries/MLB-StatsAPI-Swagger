@@ -5,7 +5,7 @@ OpenAPI Swagger for MLB Stats API
 ## Note
 
 - `schemas.yml` is refactored to reduce cyclical schema references in order to use swagger editor
-- If you want to use this to generate swagger, rename `raw_schemas.yml` to `schemas.yml` & rename/delete the old one
+- If you want to use this to generate swagger, rename `raw_schemas.yml` to `schemas.yml` & delete the old one
 
 ## Copyright Notice
 
