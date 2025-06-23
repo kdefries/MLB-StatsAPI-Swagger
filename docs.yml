@@ -182,6 +182,13 @@ paths:
   /api/v1.1/game/{game_pk}/feed/live/diffPatch:
     $ref: './endpoints/game.yml#/paths/~1api~1v1.1~1game~1{game_pk}~1feed~1live~1diffPatch'
 
+  # High Low
+  /api/v1/highLow/{highLowType}:
+    $ref: './endpoints/high_low.yml#/paths/~1api~1v1~1highLow~1{highLowType}'
+  /api/v1/highLow/types:
+    $ref: './endpoints/high_low.yml#/paths/~1api~1v1~1highLow~1types'
+
+
   /api/v1/teams/{teamId}/alumni:
     get:
       tags:
@@ -7701,120 +7708,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/highLow/{highLowType}:
-    get:
-      tags:
-        - High/Low
-      summary: View high/low stats by player or team
-      operationId: highLow
-      parameters:
-        - name: highLowType
-          in: path
-          description: Type of high/low stats ('player', 'team', 'game')
-          required: true
-          schema:
-            $ref: '#/components/schemas/HighLowTypeEnum'
-        - name: statGroup
-          in: query
-          description: Comma delimited list of  categories of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/StatGroup'
-        - name: sortStat
-          in: query
-          description: Comma delimited list of baseball stats to sort splits by.
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/HighLowStatEnum'
-        - name: season
-          in: query
-          description: Comma delimited list of Seasons of play
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-        - name: gameType
-          in: query
-          description: Comma delimited list of type of Game. Available types in /api/v1/gameTypes
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/GameTypeEnum'
-        - name: teamId
-          in: query
-          description: 'Unique Team Identifier. Format: 141, 147, etc'
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: offset
-          in: query
-          description: The pointer to start for a return set; used for pagination
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: limit
-          in: query
-          description: Number of results to return
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/HighLowWrapperRestObject'
-  /api/v1/highLow/types:
-    get:
-      tags:
-        - High/Low
-      summary: View high/low stat types
-      operationId: highLowStats
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BaseballStatsTypeRestObject'
+
+
   /api/v1/groupByTypes:
     get:
       tags:
