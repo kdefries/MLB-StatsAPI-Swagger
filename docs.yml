@@ -15,7 +15,7 @@ servers:
 tags:
   - name: Reviews
   - name: Bat Tracking
-    description: 'Operations pertaining to bat tracking data '
+    description: 'Operations pertaining to bat tracking data'
   - name: Attendance
   - name: League
     description: Operations pertaining to leagues
@@ -23,7 +23,7 @@ tags:
   - name: Sports
     description: Operations pertaining to sports
   - name: Weather
-    description: 'Operations pertaining to weather data '
+    description: 'Operations pertaining to weather data'
   - name: Misc
   - name: High/Low
     description: Operations pertaining to high/low stats
@@ -109,6 +109,10 @@ paths:
     $ref: './endpoints/awards.yml#/paths/~1api~1v1~1awards'
   /api/v1/awards/{awardId}:
     $ref: './endpoints/awards.yml#/paths/~1api~1v1~1awards~1{awardId}'
+
+  # Bat Tracking
+  /api/v1/batTracking/game/{gamePk}/{playId}:
+    $ref: './endpoints/bat_tracking.yml#/paths/~1api~1v1~1batTracking~1game~1{gamePk}~1{playId}'
 
   /api/v1/teams/{teamId}/alumni:
     get:
@@ -9461,46 +9465,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/BroadcastAvailabilityRestObject'
-  /api/v1/batTracking/game/{gamePk}/{playId}:
-    get:
-      tags:
-        - Bat Tracking
-      summary: View Bat Tracking Data by playId and gameId
-      description: This endpoint allows you to pull bat tracking data by gameId and playId
-      operationId: batTracking
-      parameters:
-        - name: gamePk
-          in: path
-          description: Unique Primary Key Representing a Game
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: playId
-          in: path
-          description: Unique play identifier
-          required: true
-          schema:
-            type: string
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BatTrackingRestObject'
-      security:
-        - basicAuth: []
-        - bearerAuth: []
+
   /api/v1/baseballStats:
     get:
       tags:

@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Stats API Awards Section
+  title: Stats API Awards
   description: Operations pertaining to awards
   version: 1.0.0
 

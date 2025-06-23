@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Stats API Analytics Section
+  title: Stats API Analytics
   description: Operations pertaining to field tracking and analytics
   version: 1.0.0
 
