@@ -1,0 +1,1061 @@
+openapi: 3.0.1
+info:
+  title: Stats API Misc
+  description: Operations pertaining to config elements
+  version: 1.0.0
+
+paths:  
+  /api/v1/gameStatus:
+    get:
+      tags:
+        - Misc
+      summary: List all status types
+      operationId: gameStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/RestObject'
+    post:
+      tags:
+        - Misc
+      summary: Clear all status types
+      operationId: updateGameStatuses
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/gamedayTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all gameday types
+      operationId: gamedayTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/gameTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all game types
+      operationId: gameTypes
+      parameters:
+        - name: sportId
+          in: query
+          description: Top level organization of a sport
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: leagueId
+          in: query
+          description: Unique League Identifier
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GameTypeEnum'
+  /api/v1/freeGameTypes:
+    get:
+      tags:
+        - Misc
+      summary: View free game types
+      operationId: freeGameTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/FreeGameTypeRestObject'
+  /api/v1/baseballStats:
+    get:
+      tags:
+        - Misc
+      summary: List all baseball stats
+      operationId: baseballStats
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/BaseballStatsTypeRestObject'
+  /api/v1/stats/search/stats:
+    get:
+      tags:
+        - Misc
+      summary: List stat search stats
+      operationId: statSearchStats
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StatSearchStatRestObject'
+  /api/v1/stats/search/params:
+    get:
+      tags:
+        - Misc
+      summary: List stat search parameters
+      operationId: statSearchParams
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StatSearchParamRestObject'
+  /api/v1/stats/search/groupByTypes:
+    get:
+      tags:
+        - Misc
+      summary: List groupBy types
+      operationId: statSearchGroupByTypes
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GroupByEnum'
+  /api/v1/stats/search/config:
+    get:
+      tags:
+        - Misc
+      summary: Stats Search Config Endpoint
+      operationId: statSearchConfig
+      parameters:
+        - name: filterLevel
+          in: query
+          description: Categories of filters for stat search
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/FilterLevelEnum'
+        - name: group
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/StatSearchConfigRestObject'
+  /api/v1/jobTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all job types
+      operationId: jobTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/JobTypeRestObject'
+    post:
+      tags:
+        - Misc
+      operationId: updateJobTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/v1/windDirection:
+    get:
+      tags:
+        - Misc
+      summary: List all wind direction options
+      operationId: windDirection
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/weatherTrajectoryConfidences:
+    get:
+      tags:
+        - Misc
+      summary: List all weather trajectories
+      operationId: weatherTrajectoryConfidences
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/WeatherTrajectoryConfidenceTypeRestObject'
+  /api/v1/violationTypes:
+    get:
+      tags:
+        - Misc
+      summary: View available violationType options
+      operationId: violationTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/ViolationTypeRestObject'
+  /api/v1/videoResolutionTypes:
+    get:
+      tags:
+        - Misc
+      summary: View video resolution options
+      operationId: videoResolutionTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/VideoResolutionEnumRestObject'
+  /api/v1/transactionTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all transaction types
+      operationId: transactionTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/trackingVersions:
+    get:
+      tags:
+        - Misc
+      summary: List all tracking versions
+      operationId: trackingVersions
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/TrackingVersion'
+  /api/v1/trackingVendors:
+    get:
+      tags:
+        - Misc
+      summary: List all tracking vendors
+      operationId: trackingVendors
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/TrackingVendor'
+  /api/v1/trackingSystemOwners:
+    get:
+      tags:
+        - Misc
+      summary: List all tracking system owners
+      operationId: trackingSystemOwners
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/TrackingSystemOwner'
+  /api/v1/trackingSoftwareVersions:
+    get:
+      tags:
+        - Misc
+      summary: List the tracking software versions and notes
+      operationId: trackingSoftwareVersions
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/TrackingSoftwareVersionRestObject'
+  /api/v1/statcastPositionTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all statcast position types
+      operationId: statcastPositionTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StatcastPositionRestObject'
+  /api/v1/statTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all stat types
+      operationId: statTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StatType'
+  /api/v1/statGroups:
+    get:
+      tags:
+        - Misc
+      summary: List all stat groups
+      operationId: statGroups
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
+  /api/v1/statFields:
+    get:
+      tags:
+        - Misc
+      summary: List all stat fields
+      operationId: statFields
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StatField'
+  /api/v1/standingsTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all standings types
+      operationId: standingsTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/StandingsType'
+  /api/v1/sortModifiers:
+    get:
+      tags:
+        - Misc
+      summary: List all stat fields
+      operationId: aggregateSortEnum
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/AggregateSortTypeRestObject'
+  /api/v1/sky:
+    get:
+      tags:
+        - Misc
+      summary: List all sky options
+      operationId: sky
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/situationCodes:
+    get:
+      tags:
+        - Misc
+      summary: List all situation codes
+      operationId: sitCodes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: statGroup
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/SituationCodeRestObject'
+  /api/v1/scheduleTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all possible schedule types
+      operationId: scheduleTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/ScheduleTypeEnum'
+  /api/v1/scheduleEventTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all schedule event types
+      operationId: scheduleEventTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/ScheduleEventTypeRestObject'
+  /api/v1/runnerDetailTypes:
+    get:
+      tags:
+        - Misc
+      summary: List runner detail types
+      operationId: runnerDetailTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/RunnerDetailType'
+  /api/v1/ruleSettings:
+    get:
+      tags:
+        - Misc
+      summary: List all ruleSettings
+      operationId: ruleSettings
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/RuleSettingsRestObject'
+      security:
+        - basicAuth: []
+        - bearerAuth: []
+  /api/v1/rosterTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all possible roster types
+      operationId: rosterTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/RosterType'
+  /api/v1/roofTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all roof types
+      operationId: roofTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/RoofTypeRestObject'
+  /api/v1/reviewReasons:
+    get:
+      tags:
+        - Misc
+      summary: List all replay review reasons
+      operationId: reviewReasons
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/positions:
+    get:
+      tags:
+        - Misc
+      summary: List all possible positions
+      operationId: positions
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/BaseballPosition'
+  /api/v1/playerStatusCodes:
+    get:
+      tags:
+        - Misc
+      summary: List all player status codes
+      operationId: playerStatusCodes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/platforms:
+    get:
+      tags:
+        - Misc
+      summary: List all possible platforms
+      operationId: platforms
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/Platform'
+  /api/v1/pitchTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all pitch classification types
+      operationId: pitchTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/pitchCodes:
+    get:
+      tags:
+        - Misc
+      summary: List all pitch codes
+      operationId: pitchCodes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/PitchCodeRestObject'
+  /api/v1/performerTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all possible performer types
+      operationId: performerTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/PerformerType'
+  /api/v1/moundVisitTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all mound visit types
+      operationId: moundVisitTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/metrics:
+    get:
+      tags:
+        - Misc
+      summary: List all possible metrics
+      operationId: metrics
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/RestObject'
+  /api/v1/mediaState:
+    get:
+      tags:
+        - Misc
+      summary: View media state options
+      operationId: mediaStateTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/MediaStateRestObject'
+  /api/v1/lookup/values/all:
+    get:
+      tags:
+        - Misc
+      summary: View all lookup values
+      operationId: getLookupValues
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: object
+  /api/v1/logicalEvents:
+    get:
+      tags:
+        - Misc
+      summary: List all logical event types
+      operationId: logicalEvents
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/leagueLeaderTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all possible player league leader types
+      operationId: leagueLeaderTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/LeagueLeaderTypeRestObject'
+  /api/v1/languages:
+    get:
+      tags:
+        - Misc
+      summary: List all support languages
+      operationId: languages
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/Language'
+  /api/v1/hitTrajectories:
+    get:
+      tags:
+        - Misc
+      summary: List all hit trajectories
+      operationId: hitTrajectories
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GeneralLookupRestObject'
+  /api/v1/groupByTypes:
+    get:
+      tags:
+        - Misc
+      summary: List groupBy types
+      operationId: groupByTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/GroupByEnum'
+  /api/v1/fielderDetailTypes:
+    get:
+      tags:
+        - Misc
+      summary: List fielder detail types
+      operationId: fielderDetailTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/FielderDetailType'
+  /api/v1/eventTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all event types
+      operationId: eventTypes
+      parameters:
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: string
+  /api/v1/eventStatus:
+    get:
+      tags:
+        - Misc
+      summary: List all possible event status types
+      operationId: eventStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/IGameStatus'
+  /api/v1/coachingVideoTypes:
+    get:
+      tags:
+        - Misc
+      summary: List all coaching video types
+      operationId: coachingVideoTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+  /api/v1/broadcastAvailability:
+    get:
+      tags:
+        - Misc
+      summary: View broadcast availability options
+      operationId: broadcastAvailabilityTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/BroadcastAvailabilityRestObject'

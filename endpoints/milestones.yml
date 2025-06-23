@@ -1,0 +1,238 @@
+openapi: 3.0.1
+info:
+  title: Stats API Milestones
+  description: Operations pertaining to milestones
+  version: 1.0.0
+
+paths:  
+  /api/v1/milestones:
+    get:
+      tags:
+        - Milestones
+      summary: View pending and achieved milestones.
+      operationId: milestones
+      parameters:
+        - name: orgType
+          in: query
+          description: 'Organization level. Format: T(Team), L(League), S(Sport)'
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/OrganizationType'
+        - name: achievementStatuses
+          in: query
+          description: Comma delimited list of milestone achievement types
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneAchievementType'
+        - name: milestoneTypes
+          in: query
+          description: Comma delimited list of milestone types
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneType'
+        - name: isLastAchievement
+          in: query
+          description: Filters out milestones that have already been surpassed.
+          required: false
+          schema:
+            type: boolean
+        - name: milestoneStatistics
+          in: query
+          description: Comma delimited list of milestone statistics
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              $ref: '../_schemas/schemas.yml#/components/schemas/Statistic'
+        - name: milestoneValues
+          in: query
+          description: Comma delimited list of milestone values
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: playerIds
+          in: query
+          description: A unique identifier for players
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: teamIds
+          in: query
+          description: Comma delimited list of Unique Team identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: leagueIds
+          in: query
+          description: Comma delimited list of Unique league identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: statGroup
+          in: query
+          description: Category of statistic to return. Available types in /api/v1/statGroups
+          required: false
+          schema:
+            $ref: '../_schemas/schemas.yml#/components/schemas/StatGroup'
+        - name: season
+          in: query
+          description: Season of play
+          required: false
+          schema:
+            type: string
+        - name: seasons
+          in: query
+          description: Comma delimited list of Seasons of play
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: venueIds
+          in: query
+          description: Comma delimited list of Unique venue identifiers
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: gamePks
+          in: query
+          description: Comma delimited list of unique primary keys
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int32
+        - name: limit
+          in: query
+          description: Number of results to return
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: fields
+          in: query
+          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
+          required: false
+          schema:
+            uniqueItems: true
+            type: array
+            items:
+              type: string
+        - name: showFirsts
+          in: query
+          description: True to show play first milestones, like first HR, first Save, etc
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneContainerRestObject'
+  /api/v1/milestoneTypes:
+    get:
+      tags:
+        - Milestones
+      summary: View available milestoneType options
+      operationId: milestoneTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneType'
+  /api/v1/milestoneStatistics:
+    get:
+      tags:
+        - Milestones
+      summary: View available milestone statistics options
+      operationId: milestoneStatistics
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneStatisticRestObject'
+  /api/v1/milestoneLookups:
+    get:
+      tags:
+        - Milestones
+      summary: View available milestoneLookup options
+      operationId: milestoneLookups
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: object
+  /api/v1/milestoneDurations:
+    get:
+      tags:
+        - Milestones
+      summary: View available milestoneDurations options
+      operationId: milestoneDurations
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneDuration'
+  /api/v1/achievementStatuses:
+    get:
+      tags:
+        - Milestones
+      summary: View available achievementStatus options
+      operationId: achievementStatuses
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '../_schemas/schemas.yml#/components/schemas/MilestoneAchievementType'

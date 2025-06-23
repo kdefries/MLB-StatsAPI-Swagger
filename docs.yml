@@ -245,6 +245,128 @@ paths:
     $ref: './endpoints/league.yml#/paths/~1api~1v1~1leagues~1{leagueId}'
 
   # Milestones
+  /api/v1/milestones:
+    $ref: './endpoints/milestones.yml#/paths/~1api~1v1~1milestones'
+  /api/v1/milestoneTypes:
+    $ref: './endpoints/milestones.yml#/paths/~1api~1v1~1milestoneTypes'
+  /api/v1/milestoneStatistics:
+    $ref: './endpoints/milestones.yml#/paths/~1api~1v1~1milestoneStatistics'
+  /api/v1/milestoneLookups:
+    $ref: './endpoints/milestones.yml#/paths/~1api~1v1~1milestoneLookups'
+  /api/v1/milestoneDurations:
+    $ref: './endpoints/milestones.yml#/paths/~1api~1v1~1milestoneDurations'
+  /api/v1/achievementStatuses:
+    $ref: './endpoints/milestones.yml#/paths/~1api~1v1~1achievementStatuses'
+
+  # Misc
+  /api/v1/gameStatus:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1gameStatus'
+  /api/v1/gamedayTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1gamedayTypes'
+  /api/v1/gameTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1gameTypes'
+  /api/v1/freeGameTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1freeGameTypes'
+  /api/v1/baseballStats:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1baseballStats'
+  /api/v1/stats/search/stats:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1stats~1search~1stats'
+  /api/v1/stats/search/params:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1stats~1search~1params'
+  /api/v1/stats/search/groupByTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1stats~1search~1groupByTypes'
+  /api/v1/stats/search/config:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1stats~1search~1config'
+  /api/v1/jobTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1jobTypes'
+  /api/v1/windDirection:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1windDirection'
+  /api/v1/weatherTrajectoryConfidences:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1weatherTrajectoryConfidences'
+  /api/v1/violationTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1violationTypes'
+  /api/v1/videoResolutionTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1videoResolutionTypes'
+  /api/v1/transactionTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1transactionTypes'
+  /api/v1/trackingVersions:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1trackingVersions'
+  /api/v1/trackingVendors:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1trackingVendors'
+  /api/v1/trackingSystemOwners:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1trackingSystemOwners'
+  /api/v1/trackingSoftwareVersions:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1trackingSoftwareVersions'
+  /api/v1/statcastPositionTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1statcastPositionTypes'
+  /api/v1/statTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1statTypes'
+  /api/v1/statGroups:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1statGroups'
+  /api/v1/statFields:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1statFields'
+  /api/v1/standingsTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1standingsTypes'
+  /api/v1/sortModifiers:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1sortModifiers'
+  /api/v1/sky:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1sky'
+  /api/v1/situationCodes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1situationCodes'
+  /api/v1/scheduleTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1scheduleTypes'
+  /api/v1/scheduleEventTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1scheduleEventTypes'
+  /api/v1/runnerDetailTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1runnerDetailTypes'
+  /api/v1/ruleSettings:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1ruleSettings'
+  /api/v1/rosterTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1rosterTypes'
+  /api/v1/roofTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1roofTypes'
+  /api/v1/reviewReasons:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1reviewReasons'
+  /api/v1/positions:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1positions'
+  /api/v1/playerStatusCodes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1playerStatusCodes'
+  /api/v1/platforms:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1platforms'
+  /api/v1/pitchTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1pitchTypes'
+  /api/v1/pitchCodes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1pitchCodes'
+  /api/v1/performerTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1performerTypes'
+  /api/v1/moundVisitTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1moundVisitTypes'
+  /api/v1/metrics:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1metrics'
+  /api/v1/mediaState:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1mediaState'
+  /api/v1/lookup/values/all:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1lookup~1values~1all'
+  /api/v1/logicalEvents:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1logicalEvents'
+  /api/v1/leagueLeaderTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1leagueLeaderTypes'
+  /api/v1/languages:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1languages'
+  /api/v1/hitTrajectories:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1hitTrajectories'
+  /api/v1/groupByTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1groupByTypes'
+  /api/v1/fielderDetailTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1fielderDetailTypes'
+  /api/v1/eventTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1eventTypes'
+  /api/v1/eventStatus:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1eventStatus'
+  /api/v1/coachingVideoTypes:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1coachingVideoTypes'
+  /api/v1/broadcastAvailability:
+    $ref: './endpoints/misc.yml#/paths/~1api~1v1~1broadcastAvailability'
 
 
   /api/v1/teams/{teamId}/alumni:
@@ -330,112 +452,10 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
-  /api/v1/jobTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all job types
-      operationId: jobTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/JobTypeRestObject'
-    post:
-      tags:
-        - Misc
-      operationId: updateJobTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-  /api/v1/gameStatus:
-    get:
-      tags:
-        - Misc
-      summary: List all status types
-      operationId: gameStatus
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RestObject'
-    post:
-      tags:
-        - Misc
-      summary: Clear all status types
-      operationId: updateGameStatuses
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: string
-      security:
-        - basicAuth: []
-        - bearerAuth: []
-  /api/v1/windDirection:
-    get:
-      tags:
-        - Misc
-      summary: List all wind direction options
-      operationId: windDirection
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/weatherTrajectoryConfidences:
-    get:
-      tags:
-        - Misc
-      summary: List all weather trajectories
-      operationId: weatherTrajectoryConfidences
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/WeatherTrajectoryConfidenceTypeRestObject'
+
+
+
+
   /api/v1/weather/venues/{venueId}/full:
     get:
       tags:
@@ -584,36 +604,8 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
-  /api/v1/violationTypes:
-    get:
-      tags:
-        - Misc
-      summary: View available violationType options
-      operationId: violationTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ViolationTypeRestObject'
-  /api/v1/videoResolutionTypes:
-    get:
-      tags:
-        - Misc
-      summary: View video resolution options
-      operationId: videoResolutionTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/VideoResolutionEnumRestObject'
+
+
   /api/v1/venues:
     get:
       tags:
@@ -1037,91 +1029,11 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/TransactionsRestObject'
-  /api/v1/transactionTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all transaction types
-      operationId: transactionTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/trackingVersions:
-    get:
-      tags:
-        - Misc
-      summary: List all tracking versions
-      operationId: trackingVersions
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TrackingVersion'
-  /api/v1/trackingVendors:
-    get:
-      tags:
-        - Misc
-      summary: List all tracking vendors
-      operationId: trackingVendors
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TrackingVendor'
-  /api/v1/trackingSystemOwners:
-    get:
-      tags:
-        - Misc
-      summary: List all tracking system owners
-      operationId: trackingSystemOwners
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TrackingSystemOwner'
-  /api/v1/trackingSoftwareVersions:
-    get:
-      tags:
-        - Misc
-      summary: List the tracking software versions and notes
-      operationId: trackingSoftwareVersions
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/TrackingSoftwareVersionRestObject'
+
+
+
+
+
   /api/v1/teams/{teamId}/stats:
     get:
       tags:
@@ -3468,98 +3380,10 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
-  /api/v1/stats/search/stats:
-    get:
-      tags:
-        - Misc
-      summary: List stat search stats
-      operationId: statSearchStats
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '#/components/schemas/FilterLevelEnum'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatSearchStatRestObject'
-  /api/v1/stats/search/params:
-    get:
-      tags:
-        - Misc
-      summary: List stat search parameters
-      operationId: statSearchParams
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '#/components/schemas/FilterLevelEnum'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatSearchParamRestObject'
-  /api/v1/stats/search/groupByTypes:
-    get:
-      tags:
-        - Misc
-      summary: List groupBy types
-      operationId: statSearchGroupByTypes
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '#/components/schemas/FilterLevelEnum'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GroupByEnum'
-  /api/v1/stats/search/config:
-    get:
-      tags:
-        - Misc
-      summary: Stats Search Config Endpoint
-      operationId: statSearchConfig
-      parameters:
-        - name: filterLevel
-          in: query
-          description: Categories of filters for stat search
-          required: false
-          schema:
-            $ref: '#/components/schemas/FilterLevelEnum'
-        - name: group
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            $ref: '#/components/schemas/StatGroup'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StatSearchConfigRestObject'
+
+
+
+
   /api/v1/stats/metrics:
     get:
       tags:
@@ -4428,81 +4252,11 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
-  /api/v1/statcastPositionTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all statcast position types
-      operationId: statcastPositionTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatcastPositionRestObject'
-  /api/v1/statTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all stat types
-      operationId: statTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatType'
-  /api/v1/statGroups:
-    get:
-      tags:
-        - Misc
-      summary: List all stat groups
-      operationId: statGroups
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatGroup'
-  /api/v1/statFields:
-    get:
-      tags:
-        - Misc
-      summary: List all stat fields
-      operationId: statFields
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StatField'
-  /api/v1/standingsTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all standings types
-      operationId: standingsTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/StandingsType'
+
+
+
+
+
   /api/v1/standings/{standingsType}:
     get:
       tags:
@@ -4840,83 +4594,9 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/SportsRestObject'
-  /api/v1/sortModifiers:
-    get:
-      tags:
-        - Misc
-      summary: List all stat fields
-      operationId: aggregateSortEnum
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/AggregateSortTypeRestObject'
-  /api/v1/sky:
-    get:
-      tags:
-        - Misc
-      summary: List all sky options
-      operationId: sky
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/situationCodes:
-    get:
-      tags:
-        - Misc
-      summary: List all situation codes
-      operationId: sitCodes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: statGroup
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            $ref: '#/components/schemas/StatGroup'
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SituationCodeRestObject'
+
+
+
   /api/v1/seasons/all:
     get:
       tags:
@@ -5070,46 +4750,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/SeasonsRestObject'
-  /api/v1/scheduleTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all possible schedule types
-      operationId: scheduleTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ScheduleTypeEnum'
-  /api/v1/scheduleEventTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all schedule event types
-      operationId: scheduleEventTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ScheduleEventTypeRestObject'
+
+
   /api/v1/schedule/trackingEvents:
     get:
       tags:
@@ -5999,69 +5641,10 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ScheduleRestObject'
-  /api/v1/runnerDetailTypes:
-    get:
-      tags:
-        - Misc
-      summary: List runner detail types
-      operationId: runnerDetailTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RunnerDetailType'
-  /api/v1/ruleSettings:
-    get:
-      tags:
-        - Misc
-      summary: List all ruleSettings
-      operationId: ruleSettings
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RuleSettingsRestObject'
-      security:
-        - basicAuth: []
-        - bearerAuth: []
-  /api/v1/rosterTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all possible roster types
-      operationId: rosterTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RosterType'
-  /api/v1/roofTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all roof types
-      operationId: roofTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RoofTypeRestObject'
+
+
+
+
   /api/v1/review:
     get:
       tags:
@@ -6104,31 +5687,7 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/StatContainerRestObject'
-  /api/v1/reviewReasons:
-    get:
-      tags:
-        - Misc
-      summary: List all replay review reasons
-      operationId: reviewReasons
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
+
   /api/v1/props/play/predictions:
     get:
       tags:
@@ -6217,126 +5776,12 @@ paths:
       security:
         - basicAuth: []
         - bearerAuth: []
-  /api/v1/positions:
-    get:
-      tags:
-        - Misc
-      summary: List all possible positions
-      operationId: positions
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BaseballPosition'
-  /api/v1/playerStatusCodes:
-    get:
-      tags:
-        - Misc
-      summary: List all player status codes
-      operationId: playerStatusCodes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/platforms:
-    get:
-      tags:
-        - Misc
-      summary: List all possible platforms
-      operationId: platforms
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Platform'
-  /api/v1/pitchTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all pitch classification types
-      operationId: pitchTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/pitchCodes:
-    get:
-      tags:
-        - Misc
-      summary: List all pitch codes
-      operationId: pitchCodes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PitchCodeRestObject'
-  /api/v1/performerTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all possible performer types
-      operationId: performerTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PerformerType'
+
+
+
+
+
+
 
   # Person Endpoints
   /api/v1/people:
@@ -6358,361 +5803,6 @@ paths:
   /api/v1/people/changes:
     $ref: './endpoints/person.yml#/paths/~1api~1v1~1people~1changes'
 
-  /api/v1/moundVisitTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all mound visit types
-      operationId: moundVisitTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/milestones:
-    get:
-      tags:
-        - Milestones
-      summary: View pending and achieved milestones.
-      operationId: milestones
-      parameters:
-        - name: orgType
-          in: query
-          description: 'Organization level. Format: T(Team), L(League), S(Sport)'
-          required: false
-          schema:
-            $ref: '#/components/schemas/OrganizationType'
-        - name: achievementStatuses
-          in: query
-          description: Comma delimited list of milestone achievement types
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/MilestoneAchievementType'
-        - name: milestoneTypes
-          in: query
-          description: Comma delimited list of milestone types
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/MilestoneType'
-        - name: isLastAchievement
-          in: query
-          description: Filters out milestones that have already been surpassed.
-          required: false
-          schema:
-            type: boolean
-        - name: milestoneStatistics
-          in: query
-          description: Comma delimited list of milestone statistics
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              $ref: '#/components/schemas/Statistic'
-        - name: milestoneValues
-          in: query
-          description: Comma delimited list of milestone values
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: playerIds
-          in: query
-          description: A unique identifier for players
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: teamIds
-          in: query
-          description: Comma delimited list of Unique Team identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: leagueIds
-          in: query
-          description: Comma delimited list of Unique league identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: statGroup
-          in: query
-          description: Category of statistic to return. Available types in /api/v1/statGroups
-          required: false
-          schema:
-            $ref: '#/components/schemas/StatGroup'
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-        - name: seasons
-          in: query
-          description: Comma delimited list of Seasons of play
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-        - name: venueIds
-          in: query
-          description: Comma delimited list of Unique venue identifiers
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: gamePks
-          in: query
-          description: Comma delimited list of unique primary keys
-          required: false
-          schema:
-            type: array
-            items:
-              type: integer
-              format: int32
-        - name: limit
-          in: query
-          description: Number of results to return
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-        - name: showFirsts
-          in: query
-          description: True to show play first milestones, like first HR, first Save, etc
-          required: false
-          schema:
-            type: boolean
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/MilestoneContainerRestObject'
-  /api/v1/milestoneTypes:
-    get:
-      tags:
-        - Milestones
-      summary: View available milestoneType options
-      operationId: milestoneTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MilestoneType'
-  /api/v1/milestoneStatistics:
-    get:
-      tags:
-        - Milestones
-      summary: View available milestone statistics options
-      operationId: milestoneStatistics
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MilestoneStatisticRestObject'
-  /api/v1/milestoneLookups:
-    get:
-      tags:
-        - Milestones
-      summary: View available milestoneLookup options
-      operationId: milestoneLookups
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-                additionalProperties:
-                  type: array
-                  items:
-                    type: object
-  /api/v1/milestoneDurations:
-    get:
-      tags:
-        - Milestones
-      summary: View available milestoneDurations options
-      operationId: milestoneDurations
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MilestoneDuration'
-  /api/v1/metrics:
-    get:
-      tags:
-        - Misc
-      summary: List all possible metrics
-      operationId: metrics
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RestObject'
-  /api/v1/mediaState:
-    get:
-      tags:
-        - Misc
-      summary: View media state options
-      operationId: mediaStateTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MediaStateRestObject'
-  /api/v1/lookup/values/all:
-    get:
-      tags:
-        - Misc
-      summary: View all lookup values
-      operationId: getLookupValues
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: object
-                additionalProperties:
-                  type: array
-                  items:
-                    type: object
-  /api/v1/logicalEvents:
-    get:
-      tags:
-        - Misc
-      summary: List all logical event types
-      operationId: logicalEvents
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/leagueLeaderTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all possible player league leader types
-      operationId: leagueLeaderTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LeagueLeaderTypeRestObject'
-
-
-
-
-
-
-
-
-
-
-
-
-  /api/v1/languages:
-    get:
-      tags:
-        - Misc
-      summary: List all support languages
-      operationId: languages
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Language'
 
 
 
@@ -6726,109 +5816,35 @@ paths:
 
 
 
-  /api/v1/hitTrajectories:
-    get:
-      tags:
-        - Misc
-      summary: List all hit trajectories
-      operationId: hitTrajectories
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
 
 
-  /api/v1/groupByTypes:
-    get:
-      tags:
-        - Misc
-      summary: List groupBy types
-      operationId: groupByTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GroupByEnum'
-  /api/v1/gamedayTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all gameday types
-      operationId: gamedayTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GeneralLookupRestObject'
-  /api/v1/gameTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all game types
-      operationId: gameTypes
-      parameters:
-        - name: sportId
-          in: query
-          description: Top level organization of a sport
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: leagueId
-          in: query
-          description: Unique League Identifier
-          required: false
-          schema:
-            type: integer
-            format: int32
-        - name: season
-          in: query
-          description: Season of play
-          required: false
-          schema:
-            type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GameTypeEnum'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /api/v1/game/{gamePk}/{playId}/analytics/skeletalData/files:
     get:
@@ -6917,145 +5933,24 @@ paths:
         - basicAuth: []
         - bearerAuth: []
 
-  /api/v1/freeGameTypes:
-    get:
-      tags:
-        - Misc
-      summary: View free game types
-      operationId: freeGameTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FreeGameTypeRestObject'
-  /api/v1/fielderDetailTypes:
-    get:
-      tags:
-        - Misc
-      summary: List fielder detail types
-      operationId: fielderDetailTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/FielderDetailType'
-  /api/v1/eventTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all event types
-      operationId: eventTypes
-      parameters:
-        - name: fields
-          in: query
-          description: 'Comma delimited list of specific fields to be returned. Format: topLevelNode, childNode, attribute'
-          required: false
-          schema:
-            uniqueItems: true
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json;charset=UTF-8:
-              schema:
-                type: string
-  /api/v1/eventStatus:
-    get:
-      tags:
-        - Misc
-      summary: List all possible event status types
-      operationId: eventStatus
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/IGameStatus'
 
 
 
 
 
-  /api/v1/coachingVideoTypes:
-    get:
-      tags:
-        - Misc
-      summary: List all coaching video types
-      operationId: coachingVideoTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  type: string
-
-
-  /api/v1/broadcastAvailability:
-    get:
-      tags:
-        - Misc
-      summary: View broadcast availability options
-      operationId: broadcastAvailabilityTypes
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BroadcastAvailabilityRestObject'
-
-  /api/v1/baseballStats:
-    get:
-      tags:
-        - Misc
-      summary: List all baseball stats
-      operationId: baseballStats
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/BaseballStatsTypeRestObject'
 
 
 
 
 
-  /api/v1/achievementStatuses:
-    get:
-      tags:
-        - Milestones
-      summary: View available achievementStatus options
-      operationId: achievementStatuses
-      responses:
-        '200':
-          description: OK
-          content:
-            '*/*':
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MilestoneAchievementType'
+
+
+
+
+
+
+
+
+
+
 
